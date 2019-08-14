@@ -106,7 +106,7 @@
 					<?php if ('' != Mage::getStoreConfig('general/craftyclicks/button_image')) : ?>
 						<img style="cursor: pointer;" src="<?php echo $this->getSkinUrl('images/craftyclicks/'.Mage::getStoreConfig('general/craftyclicks/button_image')); ?>" onclick="_cp_do_lookup()" title="Find Address" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>"/>
 					<?php else : ?>
-						<button type="button" onclick="_cp_do_lookup()" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>">Find Address</button>
+						<button type="button" title="Find Address" onclick="_cp_do_lookup()" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>"><span><span>Find Address</span></span></button>
 					<?php endif ?>
 				</div>
 			</li>

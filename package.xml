@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>UK_Postcode_Address_Finder</name>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/osl-3.0.php">Open Software License ("OSL") v. 3.0</license>
     <channel>community</channel>
@@ -17,6 +17,9 @@ Please note:
 
 2. The extension is free to try and install, but to go live a paid up account with CraftyClicks.co.uk will be required. For current prices please go to http://www.craftyclicks.co.uk/prices</description>
     <notes>Release History :
+v 2.0.2
+* fix layout problem on in IE8 on onepage checkout
+
 v 2.0.1 
 * fix minor typo in default config
 
@@ -79,9 +82,9 @@ v 1.1.0
 
 v 1.0.0 - Initial Release</notes>
     <authors><author><name>Adam Stylo</name><user>auto-converted</user><email>adam@craftyclicks.co.uk</email></author></authors>
-    <date>2010-03-18</date>
-    <time>00:45:23</time>
-    <contents><target name="mage"><dir name="app"><dir name="code"><dir name="local"><dir name="CraftyClicks"><dir name="etc"><file name="config.xml" hash="9a3e8f0531d5c5aa13f4c6132fea8897"/><file name="system.xml" hash="f5d435f1234d3c3c79691321516491e6"/></dir><dir name="Helper"><file name="Data.php" hash="e5f75947ad629aabb2e3cbcde412e2cc"/></dir></dir></dir></dir><dir name="design"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="customer"><dir name="tab"><file name="addresses.phtml" hash="20ca00a61ed999808e3535b53cdd2eba"/></dir></dir><dir name="sales"><dir name="order"><dir name="create"><dir name="form"><file name="address.phtml" hash="d55fddaedd5e9ce0d252356eb9bd648c"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="craftyclicks.xml" hash="e316c4190d7de4ad9e18e08623eb0755"/></dir><dir name="template"><dir name="craftyclicks"><file name="address_form.phtml" hash="fcb3cc2696ac5b98c9ba7a2e87d908ae"/><file name="checkout_onepage.phtml" hash="a083c7d757e759520543e1d13e86191c"/><file name="crafty_template_helper.php" hash="aba83ac7ca740f54309c557a1c48f1fe"/><dir name="checkout"><dir name="onepage"><file name="billing.phtml" hash="f5764ce136d5c59c8dee4b772e343f7d"/><file name="shipping.phtml" hash="6d928d49d5608e68e36781ed8575170e"/></dir></dir><dir name="customer"><dir name="address"><file name="edit.phtml" hash="6ffbcc7ce669179ad403b8b55b3057d0"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="CraftyClicks.xml" hash="4f441928b287078df88e7d7fcac6dc0b"/></dir></dir></dir><dir name="skin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="images"><dir name="craftyclicks"><file name="button_find_address.gif" hash="0fdef9bf7ad0f7ec3f6530b7ff40bf59"/><file name="crafty_postcode_busy.gif" hash="618a14f4dca4f51100cd2400e7f9049c"/></dir></dir></dir></dir></dir></dir></target><target name="mageweb"><dir name="js"><dir name="craftyclicks"><file name="crafty_postcode.class.js" hash="1776dd76248ac469632f0304e866aabe"/></dir></dir></target></contents>
+    <date>2010-03-31</date>
+    <time>16:35:23</time>
+    <contents><target name="mage"><dir name="app"><dir name="code"><dir name="local"><dir name="CraftyClicks"><dir name="etc"><file name="config.xml" hash="ca399d0870dbd0b16e4d54451632f8ee"/><file name="system.xml" hash="07ddb428bc1240992d10312e66ace4b9"/></dir><dir name="Helper"><file name="Data.php" hash="e5f75947ad629aabb2e3cbcde412e2cc"/></dir></dir></dir></dir><dir name="design"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="customer"><dir name="tab"><file name="addresses.phtml" hash="20ca00a61ed999808e3535b53cdd2eba"/></dir></dir><dir name="sales"><dir name="order"><dir name="create"><dir name="form"><file name="address.phtml" hash="d55fddaedd5e9ce0d252356eb9bd648c"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="craftyclicks.xml" hash="e316c4190d7de4ad9e18e08623eb0755"/></dir><dir name="template"><dir name="craftyclicks"><file name="address_form.phtml" hash="fcb3cc2696ac5b98c9ba7a2e87d908ae"/><file name="checkout_onepage.phtml" hash="a083c7d757e759520543e1d13e86191c"/><file name="crafty_template_helper.php" hash="aba83ac7ca740f54309c557a1c48f1fe"/><dir name="checkout"><dir name="onepage"><file name="billing.phtml" hash="5058c1bb0250e2bdfcf0cd18b13f4b0a"/><file name="shipping.phtml" hash="aed3db630e10443fe23382b491ad0163"/></dir></dir><dir name="customer"><dir name="address"><file name="edit.phtml" hash="d247da450fff8ad34e5e11cf1e85fe94"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="CraftyClicks.xml" hash="2fe59b25d5f523c3ecf22a58130adbc1"/></dir></dir></dir><dir name="skin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="images"><dir name="craftyclicks"><file name="button_find_address.gif" hash="0fdef9bf7ad0f7ec3f6530b7ff40bf59"/><file name="crafty_postcode_busy.gif" hash="618a14f4dca4f51100cd2400e7f9049c"/></dir></dir></dir></dir></dir></dir></target><target name="mageweb"><dir name="js"><dir name="craftyclicks"><file name="crafty_postcode.class.js" hash="1776dd76248ac469632f0304e866aabe"/></dir></dir></target></contents>
     <compatible/>
     <dependencies/>
 </package>

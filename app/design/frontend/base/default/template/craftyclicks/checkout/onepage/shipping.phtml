@@ -59,6 +59,7 @@
                             </div>
                         </div>
             <?php endif ?>
+                    </li>
  	<?php if (1 == Mage::getStoreConfig('general/craftyclicks/active')) : // for CraftyClicks we put country & postcode above other address fields ?>
                    <li class="fields">
                         <div class="field">
@@ -88,7 +89,7 @@
 							<?php if ('' != Mage::getStoreConfig('general/craftyclicks/button_image')) : ?>
 								<img style="cursor: pointer;" src="<?php echo $this->getSkinUrl('images/craftyclicks/'.Mage::getStoreConfig('general/craftyclicks/button_image')); ?>" onclick="_cp_do_lookup2()" title="Find Address" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>"/>
 							<?php else : ?>
-								<button type="button" onclick="_cp_do_lookup2()" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>">Find Address</button>
+								<button type="button" onclick="_cp_do_lookup2()" title="Find Address" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>"><span><span>Find Address</span></span></button>
 							<?php endif ?>
 						</div>
 					</li>
@@ -104,7 +105,6 @@
                         </div>
                     </li>
 	<?php endif ?>
-                    </li>
                     <li class="wide" id="hideOnNewAddress_shipping:street1">
                         <label for="shipping:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
                         <div class="input-box">

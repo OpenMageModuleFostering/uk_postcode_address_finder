@@ -12,7 +12,7 @@
 <config>
 	<modules>
 		<CraftyClicks>
-			<version>2.0</version>
+			<version>2.0.2</version>
 		</CraftyClicks>
 	</modules>
 	
@@ -42,7 +42,7 @@
 				<model>craftyclicks</model>
 				<access_token>xxxxx-xxxxx-xxxxx-xxxxx</access_token>
 				<button_image></button_image>
-				<button_class>form-button-alt</button_class>
+				<button_class>button</button_class>
 				<hide_fields>0</hide_fields>
 				<hide_county>1</hide_county>
 				<clear_result>0</clear_result>
