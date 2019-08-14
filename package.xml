@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>UK_Postcode_Address_Finder</name>
-    <version>2.5.5</version>
+    <version>2.5.6</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
     <channel>community</channel>
@@ -15,6 +15,9 @@ UK address entry is greatly speeded up thus improving the user experience. The b
 &#xD;
 The extension is free to try and install, but to go live a paid up account with Crafty Clicks will be required. For current prices please go to http://www.craftyclicks.co.uk/paf-database-pricing</description>
     <notes>Release History&#xD;
+v2.5.6&#xD;
+* PHP7 support (confirmed)&#xD;
+&#xD;
 v2.5.5&#xD;
 * Fixed packaging issue&#xD;
 &#xD;
@@ -157,9 +160,9 @@ v 1.1.0 &#xD;
 &#xD;
 v 1.0.0 - Initial Release</notes>
     <authors><author><name>Crafty Clicks</name><user>styloa</user><email>support@craftyclicks.co.uk</email></author></authors>
-    <date>2015-04-01</date>
-    <time>14:00:56</time>
+    <date>2016-04-27</date>
+    <time>13:29:47</time>
     <contents><target name="mage"><dir name="app"><dir name="code"><dir name="community"><dir name="Craftyclicks"><dir name="Clicktoaddress"><dir name="Helper"><file name="Data.php" hash="a561b9307d3a038e91d32c232820f54d"/></dir><dir name="data"><dir name="craftyclicks_clicktoaddress_setup"><file name="data-upgrade-2.4.9-2.5.0.php" hash="580589f5aff53b041773886008b23743"/></dir></dir><dir name="etc"><file name="config.xml" hash="8ccbcc15be22526bc0269ea558b15ac6"/><file name="system.xml" hash="9ab78f3e038966c6c147932367a3586b"/></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="Craftyclicks_Clicktoaddress.xml" hash="66e9933c58e73eaebf95266ea67b11bc"/><file name="CraftyClicks.xml" hash="34ceb62bbcd46b57947d369bf58737a1"/></dir></dir><dir name="design"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="craftyclicks_clicktoaddress.xml" hash="76a352b24809cb433f0dfe0beadb4144"/></dir><dir name="template"><dir name="craftyclicks"><dir name="clicktoaddress"><file name="common_config.phtml" hash="105cfbd98b0da641df4c182b5a1930b1"/></dir></dir></dir></dir></dir></dir><dir name="frontend"><dir name="base"><dir name="default"><dir><dir name="layout"><file name="craftyclicks_clicktoaddress.xml" hash="eb137a167c971b7e57f771d6fbbe05c8"/></dir></dir><dir name="template"><dir name="craftyclicks"><dir name="clicktoaddress"><file name="common_config.phtml" hash="f5790f5c764684d79d4a0a9fa1d23344"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="js"><dir name="craftyclicks"><dir name="clicktoaddress"><file name="crafty_postcode.class.js" hash="44593e9ea50fbfb6a6a35760b878331f"/><file name="craftyclicks_aheadworks_onestepcheckout.js" hash="c66e4c0335ff61a2c242e066669894b8"/><file name="craftyclicks_aitoc_checkout.js" hash="e4e1128e97c78545afe5a2b176c3865c"/><file name="craftyclicks_amesty_onepagecheckout.js" hash="9b1040089d3e4fbfcac15474c959b46a"/><file name="craftyclicks_ath_oscheckout.js" hash="5b1bf7b4b52750c3495ed028ababad2b"/><file name="craftyclicks_awesome_checkout.js" hash="3acb3da5f1fa843046076fb1c8f4b9cf"/><file name="craftyclicks_ecomm_easycheckout.js" hash="dfa623bd3ec54f5680c9da6a01825142"/><file name="craftyclicks_gomage_lightcheckout.js" hash="1c6f9d930a3d946508bda2bd54b8f93b"/><file name="craftyclicks_iwd_onestepcheckout.js" hash="4134989d3d606a052f62e8f2cf304c0c"/><file name="craftyclicks_iwd_onestepcheckout_v2_2.js" hash="9136e7fe5c10175dcf157fe1656c6ff3"/><file name="craftyclicks_magento.js" hash="e37d09979e449bc98bb99b2e99895a5d"/><file name="craftyclicks_magento_admin.js" hash="84a831a251d80e5b4ba6513431a4c98d"/><file name="craftyclicks_onepagecheckout.js" hash="d0cfccf16beb7586b4eba73edeb0fd58"/><file name="craftyclicks_opcheckout.js" hash="9973cdeef653347b6b45d89f8ff9bd55"/><file name="craftyclicks_tm_firecheckout.js" hash="f3173c46c6d131c2021172919adcba3b"/><file name="craftyclicks_vinagentocheckout.js" hash="1157f50866b78fdecaf948e3f07d23b0"/><file name="craftyclicks_webandpeople_onepagecheckout.js" hash="7c319da4b6889fbe75ba8c5abfb503ec"/></dir></dir></dir><dir name="skin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="images"><dir name="craftyclicks"><dir name="clicktoaddress"><file name="button_find_address.gif" hash="0fdef9bf7ad0f7ec3f6530b7ff40bf59"/><file name="crafty_postcode_busy.gif" hash="618a14f4dca4f51100cd2400e7f9049c"/></dir></dir></dir></dir></dir></dir></dir></target></contents>
     <compatible/>
-    <dependencies><required><php><min>4.0.0</min><max>6.0.0</max></php></required></dependencies>
+    <dependencies><required><php><min>4.0.0</min><max>7.9.9</max></php></required></dependencies>
 </package>
