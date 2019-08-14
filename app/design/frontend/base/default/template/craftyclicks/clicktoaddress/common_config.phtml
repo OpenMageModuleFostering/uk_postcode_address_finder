@@ -37,11 +37,11 @@ if (1 == $conf['active']) {
 	}
 
 	$js_config.= " var _cp_hide_result = true;"; // once users make the selection, hide the result box - true/false
-	$js_config.= " var _cp_1st_res_line = '".$conf['first_res_line']."';";
-	$js_config.= " var _cp_err_msg1 = '".$conf['error_msg_1']."';";
-	$js_config.= " var _cp_err_msg2 = '".$conf['error_msg_2']."';";
-	$js_config.= " var _cp_err_msg3 = '".$conf['error_msg_3']."';";
-	$js_config.= " var _cp_err_msg4 = '".$conf['error_msg_4']."';";
+	$js_config.= " var _cp_1st_res_line = '".htmlspecialchars($conf['first_res_line'])."';";
+	$js_config.= " var _cp_err_msg1 = '".htmlspecialchars($conf['error_msg_1'])."';";
+	$js_config.= " var _cp_err_msg2 = '".htmlspecialchars($conf['error_msg_2'])."';";
+	$js_config.= " var _cp_err_msg3 = '".htmlspecialchars($conf['error_msg_3'])."';";
+	$js_config.= " var _cp_err_msg4 = '".htmlspecialchars($conf['error_msg_4'])."';";
 	$js_config.= " var _cp_token_fe = '".$conf['access_token']."';"; 
 
 	if (array_key_exists('hide_fields',$conf) && $conf['hide_fields']) {

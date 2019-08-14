@@ -152,4 +152,13 @@
 			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
 		</reference>	  
 	</anattadesign_awesomecheckout_onepage_index>
+		<!-- LOTUS BREATH onestep checkout - http://store.lotusbreath.com/magento-extension/lotusbreath-one-step-checkout.html -->
+	<lotusbreath_onestepcheckout_index_index>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_magento.js</script></action>
+			<!-- #2 applied to dodge lotus breaths own way of integrating with CC. they trying to use a wrong path, and it would overwrite our cfg -->
+			<block type="page/html" name="craftyclicks_config2" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>		
+	</lotusbreath_onestepcheckout_index_index>
 </layout>

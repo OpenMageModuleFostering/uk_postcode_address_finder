@@ -244,6 +244,21 @@ function CraftyClicksMagentoClass () {
 		
 	this.result_selected = function() {
 		if (_cp_clear_result) this.cp_obj.update_res(null);
+
+		switch($(this.fields.postcode_id).getValue().substring(0,2)){
+			case "GY":
+				$(this.fields.country_id).setValue("GG");
+				break;
+			case "JE":
+				$(this.fields.country_id).setValue("JE");
+				break;
+			case "IM":				
+				$(this.fields.country_id).setValue("IM");
+				break;
+			default:
+				$(this.fields.country_id).setValue("GB");
+				break;
+		}
 	}
 	
 	this.result_error = function() { 
