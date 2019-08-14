@@ -12,7 +12,7 @@
 <config>
 	<modules>
 		<CraftyClicks>
-			<version>2.4.5</version>
+			<version>2.4.8</version>
 		</CraftyClicks>
 	</modules>
 	
@@ -65,6 +65,7 @@
 				<error_msg_2>This postcode is not valid, please try again or enter your address manually</error_msg_2>
 				<error_msg_3>Unable to connect to address lookup server, please enter your address manually</error_msg_3>
 				<error_msg_4>An unexpected error occured, please enter your address manually</error_msg_4>
+				<button_fixposition>0</button_fixposition>
 			</craftyclicks>
 		</general>
 	</default>

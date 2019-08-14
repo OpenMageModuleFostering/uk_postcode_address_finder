@@ -66,6 +66,11 @@ if (1 == $conf['craftyclicks']['active']) {
 	} else {
 		$js_config.= " var _cp_move_fields = false;";
 	}
+	if (array_key_exists('button_fixposition',$conf['craftyclicks']) && 1 == $conf['craftyclicks']['button_fixposition']) {
+		$js_config.= " var _cp_button_fixposition = true;";
+	} else {
+		$js_config.= " var _cp_button_fixposition = false;";
+	}
 
 } else { //if (1 == $conf['craftyclicks']['active']) {
 	$js_config = " var _cp_integrate = false; ";

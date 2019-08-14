@@ -125,7 +125,7 @@ function CraftyClicksMagentoClass () {
 				// check postcode field width, longer than 350px means we are on a magento enterprise template and we need to shrink things a bit
 				// so the lookup button fits on the form next to the postcode field
 				var pcWidth = parseInt($(this.fields.postcode_id).getStyle("width"));
-				if (350 < pcWidth) {
+				if (350 < pcWidth || _cp_button_fixposition) {
 					this.uk_postcode_width = '100px';
 				}
 				
@@ -181,7 +181,7 @@ function CraftyClicksMagentoClass () {
 				if ('' != _cp_button_image) {
 					tmp_html += '<img style="cursor: pointer;" src="'+_cp_button_image+'" id="'+this.prefix+'_cp_button_id" class="'+_cp_button_class+'" title="'+_cp_button_text+'"/>';
 				} else {
-					tmp_html += '<button type="button" id="'+this.prefix+'_cp_button_id" class="'+_cp_button_class+'" style="height:100%"><span><span>'+_cp_button_text+'</span></span></button>';
+					tmp_html += '<button type="button" id="'+this.prefix+'_cp_button_id" class="'+_cp_button_class+'"><span><span>'+_cp_button_text+'</span></span></button>';
 				}
 				if (0 == this.div_depth) {
 					tmp_html += '</div>';							
@@ -191,14 +191,24 @@ function CraftyClicksMagentoClass () {
 				$(this.fields.postcode_id).up('div', this.div_depth).insert( {after : tmp_html} );
 				$(this.prefix+"_cp_button_id").observe('click', this.button_clicked.bindAsEventListener(this));
 			}
-			// show button 
-			$(this.prefix+"_cp_button_div_id").show();
 			
 			// shrink postcode field if needed
 			if ('' != this.uk_postcode_width) {
 				this.old_postcode_width = $(this.fields.postcode_id).getStyle("width");
 				$(this.fields.postcode_id).setStyle({width: this.uk_postcode_width});
 			}
+
+			// black magic against new magento template
+
+			if(_cp_button_fixposition){
+				// button is below the input box. Set the bounding LI element relative
+				$(this.prefix+'_cp_button_div_id').up('li').setStyle({position:'relative'});
+				// set the button's div to absolute. (0,0 is the li's 0,0)
+				// set the button's div to be on same distance on Y axis as the input box & input box width + 10 px extra on the X axis.
+				$(this.prefix+'_cp_button_div_id').setStyle({position:'absolute', top: "0px", left: parseInt($(this.fields.postcode_id).getStyle('width')) + 10 + "px"});
+			}
+			// show button
+			$(this.prefix+"_cp_button_div_id").show();
 
 			// hide county if requested (and if it exists in the html at all)
 			if (_cp_hide_county) {
@@ -263,7 +273,8 @@ function CraftyClicksMagentoClass () {
 		cp_obj.set("res_autoselect", "0");
 		cp_obj.set("result_elem_id", this.prefix+"_cp_result_display");
 		cp_obj.set("form", "");
-		cp_obj.set("elem_company"  , this.fields.company_id); // optional
+		if ($(this.fields.company_id)) cp_obj.set("elem_company"  , this.fields.company_id); // company field exists, use it
+		else cp_obj.set("elem_company"  , this.fields.street1_id); // no company field, put company names on 1st line of address
 		cp_obj.set("elem_street1"  , this.fields.street1_id);
 		cp_obj.set("elem_street2"  , this.fields.street2_id);
 		cp_obj.set("elem_street3"  , this.fields.street3_id); 
@@ -399,5 +410,10 @@ document.observe("dom:loaded", function() {
 		});
 	}
 
+	// preload the busy img
+	if ('' != _cp_busy_img_url) {
+		var image = new Image();
+		image.src = _cp_busy_img_url;
+	}
 });
 
