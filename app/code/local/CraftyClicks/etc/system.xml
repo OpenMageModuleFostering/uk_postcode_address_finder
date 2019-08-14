@@ -30,7 +30,7 @@
 							<show_in_store>0</show_in_store>
 						</active>
 
-						<active_admin translate="label">
+						<active_admin_panel translate="label">
 							<label>Enabled - Admin Panel</label>
 							<frontend_type>select</frontend_type>
 							<source_model>adminhtml/system_config_source_yesno</source_model>
@@ -38,17 +38,28 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-						</active_admin>
+						</active_admin_panel>
 
 						<access_token translate="label">
-							<label>Access Token</label>
+							<label>Access Token - Frontend</label>
 							<frontend_type>text</frontend_type>
 							<sort_order>5</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
+							<comment>Your access token for use on the public facing website. This should be set to "web/external" use in your Crafty Clicks MyAccount.</comment>
 						</access_token>
 
+						<access_token_admin_panel translate="label">
+							<label>Access Token - Admin Panel</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Your access token for use on the internal admin panel. This should be set to "internal" use in your Crafty Clicks MyAccount. Contact us if you need more info on licensing.</comment>
+						</access_token_admin_panel>
+						
 						<button_image translate="label">
 							<label>Button Image</label>
 							<frontend_type>text</frontend_type>
@@ -102,17 +113,6 @@
 							<comment>Select to hide the result box once an address is selected.</comment>
 						</clear_result>
 
-						<house_search translate="label">
-							<label>Search by house name/number</label>
-							<frontend_type>select</frontend_type>
-							<source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>27</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>0</show_in_store>
-							<comment>If 'yes' customers can provide a house name/number to speed up searching.</comment>
-						</house_search>
-
 						<error_class translate="label">
 							<label>Error Msg Class</label>
 							<frontend_type>text</frontend_type>
@@ -122,6 +122,16 @@
 							<show_in_store>0</show_in_store>
 							<comment>Set the css class to use for the error messages. Try 'error-msg', 'error' or even leave it blank.</comment>
 						</error_class>
+
+						<max_res_lines translate="label">
+							<label>Result Box Lines</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>32</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Maximum number of lines to show in the result drop-down box.</comment>
+						</max_res_lines>
 
 						<first_res_line translate="label">
 							<label>First Result Line</label>
