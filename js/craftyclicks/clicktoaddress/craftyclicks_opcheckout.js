@@ -107,8 +107,8 @@ function CraftyClicksMagentoClass () {
 			$(fields.street1_id).up('td').insert({after: $(this.fields.postcode_id).up('td')});
 			$$('label[for="'+fields.street1_id+'"]')[0].up('td').insert({after: $$('label[for="'+this.fields.postcode_id+'"]')[0].up('td')});
 
-			$(fields.town_id).up('tr').insert({after: $(this.fields.street1_id).up('td')});
-			$(fields.town_id).up('tr').insert({after: $$('label[for="'+this.fields.street1_id+'"]')[0].up('td')});
+			$($$('label[for="'+this.fields.town_id+'"]')[0]).up('tr').insert({before: $$('label[for="'+this.fields.street1_id+'"]')[0].up('td')});
+			$($$('label[for="'+this.fields.town_id+'"]')[0]).up('tr').insert({before: $(this.fields.street1_id).up('td')});
 
 			$(this.fields.street1_id).up('td').wrap(new Element('tr'));
 			$$('label[for="'+this.fields.street1_id+'"]')[0].up('td').wrap(new Element('tr'));

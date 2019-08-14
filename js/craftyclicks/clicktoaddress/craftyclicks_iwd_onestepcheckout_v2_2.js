@@ -323,6 +323,8 @@ function CraftyClicksMagentoClass () {
 				$(this.fields.country_id).setValue("GB");
 				break;
 		}
+
+		jQuery('#'+this.fields.street1_id.replace(":","\\:")).trigger( "keydown" );
 	}
 	
 	this.result_error = function() { 
