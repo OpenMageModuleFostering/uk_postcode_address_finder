@@ -64,19 +64,21 @@ endif; ?>
 </div>
 <?php // CraftyClicks - Start
 $conf = Mage::getStoreConfig('general');		
-if ($conf['craftyclicks']['active_admin']) : 
-	if( ! $this->getIsShipping()) : 
-		$cp_access_token = $conf['craftyclicks']['access_token'];	
+if ($conf['craftyclicks']['active_admin'] && $this->getIsShipping()) : 
+	$cp_access_token = $conf['craftyclicks']['access_token'];	
 ?>
 <script type="text/javascript" charset="ISO-8859-1" src="<?php echo $this->getJsUrl('crafty/crafty_postcode.js'); ?>"></script>
 <script type="text/javascript">
 //<![CDATA[
 var cp_obj = new Array();
 function ch_country () {
-	if (this.value!='GB') 
+	if (this.value!='GB') {
 		$(this.alt+'findAddrBtn').style.display = 'none'; 
-	else
+		$(this.alt+'postcode').setAttribute('style', '');
+	} else {
 		$(this.alt+'findAddrBtn').style.display = 'inline'; 
+		$(this.alt+'postcode').setAttribute('style', 'width:80px !important');
+	}
 }
  
 function do_look() {
@@ -103,12 +105,6 @@ function add_crafty_clicks(item_html_id) {
 		fndBtn.alt = item_html_id;
 		fndBtn.id = item_html_id+'findAddrBtn';
 		fndBtn.value='<?php echo $this->__('Find Address') ?>';
-		fndBtn.style.display='none';
-		fndBtn.style.fontSize='10px';
-		fndBtn.style.width='70px';
-
-//		$(item_html_id+'postcode').style.width = '100px';
-		$(item_html_id+'postcode').setAttribute('style', 'width:100px !important');
 
 		$(item_html_id+'postcode').parentNode.appendChild(fndBtn);
 		Event.observe(fndBtn.id, 'click', do_look);
@@ -125,24 +121,30 @@ function add_crafty_clicks(item_html_id) {
 		Event.observe(item_html_id+'country_id', 'change', ch_country);
 	}
 	// make button visible if country is UK
-	if ($(item_html_id+'country_id').value!='GB') 
+	if ($(item_html_id+'country_id').value!='GB') {
 		$(item_html_id+'findAddrBtn').style.display = 'none'; 
-	else
+		$(item_html_id+'postcode').setAttribute('style', '');
+	} else {
 		$(item_html_id+'findAddrBtn').style.display = 'inline';
+		$(item_html_id+'postcode').setAttribute('style', 'width:80px !important');
+	}
 }
-add_crafty_clicks('order-billing_address_');
+
+function crafty_add_to_all_forms() {
+// alert ('crafty_add_to_all_forms');
+	if (!$('order-billing_address_findAddrBtn') && !$('order-billing_address_postcode').disabled) {
+		add_crafty_clicks('order-billing_address_');
+	}
+	if (!$('order-shipping_address_findAddrBtn') && !$('order-shipping_address_postcode').disabled) {
+		add_crafty_clicks('order-shipping_address_');
+	}
+}
+
+// This is crude, but the way magento does the address forms with javascript is hard to figure out.
+// Waiting a second before adding our element seems to guarantee that all the standard form fields 
+// will already be in DOM ready for us to manipulate
+setTimeout(crafty_add_to_all_forms,1000);
 //]]>
 </script>
 <?php 
-endif; // if( ! $this->getIsShipping()) :
-
-if($this->getIsShipping()): ?>
-
-	<script type="text/javascript">
-	//<![CDATA[
-		add_crafty_clicks('order-shipping_address_')
-	//]]>
-	</script>
-<?php 
-endif; // if($this->getIsShipping()):
 endif; // CraftyClicks - End ?>
