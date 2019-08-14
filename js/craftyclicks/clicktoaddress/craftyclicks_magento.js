@@ -16,7 +16,7 @@
 // If you copy/use/modify this code - please keep this
 // comment header in place 
 //
-// Copyright (c) 2009-2013 Crafty Clicks (http://www.craftyclicks.com)
+// Copyright (c) 2009-2014 Crafty Clicks (http://www.craftyclicks.com)
 //
 // This code relies on prototype js, you must have a reasonably recent version loaded 
 // in your template. Magento should include it as standard.
@@ -61,14 +61,18 @@ function CraftyClicksMagentoClass () {
 		var fields = this.fields;
 		
 		this.mw_opc = (typeof $MW_Onestepcheckout !== "undefined" ? true : false);
-		
+		this.crafty_melissa = false;
+		if(typeof crafty_melissa_cfg !== "undefined"){
+			this.crafty_melissa = (parseInt(crafty_melissa_cfg.usaauto.active) || parseInt(crafty_melissa_cfg.globalauto.active)) ? true : false;
+		}
+
 		if (this.mw_opc) {
 			this.li_class = 'fields';
 		}
 		
 		// postcode should be bundled with country in the same li on the standard magento address templates
 		// if this isn't the case, the rest of this code unlikely to work!
-		if ($(fields.country_id).up('li') == $(fields.postcode_id).up('li') || this.mw_opc) {
+		if ($(fields.country_id).up('li') == $(fields.postcode_id).up('li') || this.mw_opc || this.crafty_melissa) {
 			
 			if ('' != $(fields.town_id).getValue()) {
 				_cp_hide_fields = false;

@@ -129,7 +129,7 @@ function CraftyClicksMagentoClass () {
 			if (_cp_hide_county) {
 				ne = $(this.fields.county_id);
 				if (ne) {
-					ne.up('div').hide();
+					ne.up('div.field').hide();
 				}
 			}
 		}	
@@ -171,7 +171,7 @@ function CraftyClicksMagentoClass () {
 			if (_cp_hide_county) {
 				ne = $(this.fields.county_id);
 				if (ne) {
-					ne.up('div').show();
+					ne.up('div.field').show();
 				}
 			}
 						

@@ -13,7 +13,7 @@ if (1 == $conf['active']) {
 	if (isset($ams)){
 		$js_config .= " var _cp_integrate = false;";
 		$js_config .= " var _cp_integrate_amesty = true;";
-		echo '<script src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'craftyclicks/craftyclicks_amesty_onepagecheckout.js"></script>';
+		echo '<script src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'craftyclicks/clicktoaddress/craftyclicks_amesty_onepagecheckout.js"></script>';
 	}
 	else{
 		$js_config .= " var _cp_integrate = true;";

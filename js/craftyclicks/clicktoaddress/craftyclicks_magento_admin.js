@@ -9,7 +9,7 @@
 // If you copy/use/modify this code - please keep this
 // comment header in place 
 //
-// Copyright (c) 2009-2012 Crafty Clicks (http://www.craftyclicks.com)
+// Copyright (c) 2009-2014 Crafty Clicks (http://www.craftyclicks.com)
 //
 // This code relies on prototype js, you must have a reasonably recent version loaded 
 // in your template. Magento should include it as standard.

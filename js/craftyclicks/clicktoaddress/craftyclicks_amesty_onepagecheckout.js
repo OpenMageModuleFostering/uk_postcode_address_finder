@@ -68,7 +68,7 @@ function CraftyClicksMagentoClass () {
 		
 		// postcode should be bundled with country in the same li on the standard magento address templates
 		// if this isn't the case, the rest of this code unlikely to work!
-		if ($(fields.country_id).up('li') == $(fields.postcode_id).up('li') || this.mw_opc) {
+		if ($(fields.country_id).up('li') == $(fields.postcode_id).up('li') || true) {
 			
 			if ('' != $(fields.town_id).getValue()) {
 				_cp_hide_fields = false;
@@ -181,7 +181,7 @@ function CraftyClicksMagentoClass () {
 				if ('' != _cp_button_image) {
 					tmp_html += '<img style="cursor: pointer;" src="'+_cp_button_image+'" id="'+this.prefix+'_cp_button_id" class="'+_cp_button_class+'" title="'+_cp_button_text+'"/>';
 				} else {
-					tmp_html += '<button type="button" id="'+this.prefix+'_cp_button_id" class="'+_cp_button_class+'" style="height:100%"><span><span>'+_cp_button_text+'</span></span></button>';
+					tmp_html += '<button type="button" id="'+this.prefix+'_cp_button_id" class="'+_cp_button_class+'" style="height:100%"><span><span style="padding: 0px 10px;">'+_cp_button_text+'</span></span></button>';
 				}
 				if (0 == this.div_depth) {
 					tmp_html += '</div>';							
@@ -351,7 +351,8 @@ document.observe("dom:loaded", function() {
 		"prefix"				: "billing", 
 		"fields"				: { "postcode_id" : "billing:postcode", 
 									"company_id"  : "billing:company", 
-									"street1_id"  : "billing:street", 
+									"street1_id"  : "billing:street1", 
+									"street2_id"  : "billing:street2", 
 									"town_id"	  : "billing:city",
 									"county_id"   : "billing:region", 
 									"country_id"  : "billing:country_id",
@@ -366,7 +367,8 @@ document.observe("dom:loaded", function() {
 		"prefix"				: "shipping", 
 		"fields"				: { "postcode_id" : "shipping:postcode", 
 									"company_id"  : "shipping:company", 
-									"street1_id"  : "shipping:street", 
+									"street1_id"  : "shipping:street1", 
+									"street2_id"  : "shipping:street2", 
 									"town_id"	  : "shipping:city",
 									"county_id"   : "shipping:region", 
 									"country_id"  : "shipping:country_id",
