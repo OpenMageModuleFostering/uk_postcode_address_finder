@@ -35,8 +35,7 @@
     <ul>
         <li><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress())
                 ->setFieldIdFormat('shipping:%s')->setFieldNameFormat('shipping[%s]')->setFieldParams('onchange="shipping.setSameAsBilling(false)"')->toHtml() ?></li>
-<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active') ||
-		  1 != Mage::getStoreConfig('general/craftyclicks/change_fields')) : ?>
+<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active')) : ?>
             <li><div class="input-box">
             <label for="shipping:company"><?php echo $this->__('Company') ?></label><br/>
             <input type="text" id="shipping:company" name="shipping[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" onchange="shipping.setSameAsBilling(false);" /></div>		
@@ -47,15 +46,24 @@
 <?php endif ?>
             </li>
 <?php endif ?>
-	<?php if (1 == Mage::getStoreConfig('general/craftyclicks/active') &&
-			  1 == Mage::getStoreConfig('general/craftyclicks/change_fields')) : ?>
+	<?php if (1 == Mage::getStoreConfig('general/craftyclicks/active')) : ?>
         <li><div class="input-box">
             <label for="shipping:country_id"><?php echo $this->__('Country') ?> <span class="required">*</span></label><br />
             <?php echo $this->getCountryHtmlSelect('shipping') ?></div>
-            <div class="input-box">
+            <div class="input-box" id="zipDiv2">
             <label for="shipping:postcode"><?php echo $this->__('Zip/Postal Code') ?> <span class="required">*</span></label><br />
             <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" onchange="shipping.setSameAsBilling(false);"/></div>
-            </li>
+            <div class="input-box" id="findAddrBtnDiv2" style="display:none;"><br />
+				&nbsp;
+				<?php if ('' != Mage::getStoreConfig('general/craftyclicks/button_image')) : ?>
+					<img style="cursor: pointer;" src="<?php echo $this->getSkinUrl('craftyclicks/'.Mage::getStoreConfig('general/craftyclicks/button_image')); ?>" onclick="_cp_do_lookup2()" title="Find Address" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>"/>
+				<?php else : ?>
+					<button type="button" onclick="_cp_do_lookup2()" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>">Find Address</button>
+				<?php endif ?>
+			</div>
+			</li>
+		<li><span style="display:none;" id="crafty_postcode_result_display2">&nbsp;
+			</span></li>
         <li><div class="input-box">
             <label for="shipping:company"><?php echo $this->__('Company') ?></label><br/>
             <input type="text" id="shipping:company" name="shipping[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" onchange="shipping.setSameAsBilling(false);" /></div>
@@ -78,8 +86,7 @@
                 $('shipping:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
             </script>
             <input type="text" id="shipping:region" name="shipping[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>" title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none" /></div></li>
-	<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active') ||
-			  1 != Mage::getStoreConfig('general/craftyclicks/change_fields')) : ?>
+	<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active')) : ?>
         <li><div class="input-box">
             <label for="shipping:postcode"><?php echo $this->__('Zip/Postal Code') ?> <span class="required">*</span></label><br />
             <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" onchange="shipping.setSameAsBilling(false);"/></div>

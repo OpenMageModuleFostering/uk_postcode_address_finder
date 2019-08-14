@@ -13,28 +13,6 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 
 		echo "<script type=\"text/javascript\">";
 		
-		if (1 == $conf['craftyclicks']['add_elements']) {
-			// need to create the 'find address button and the results box
-			$button_class = '';
-			if (array_key_exists('button_class',$conf['craftyclicks']) && '' != $conf['craftyclicks']['button_class']) {
-				$button_class = 'class="'.$conf['craftyclicks']['button_class'].'" ';
-			}
-			if (!array_key_exists('button_image',$conf['craftyclicks']) || '' == $conf['craftyclicks']['button_image']) {
-				// default browser button
-				$buttonHTML = "<span id=\"findAddrBtn".$suffix."\">&nbsp;&nbsp;<button type=\"button\" onclick=\"_cp_do_lookup".$suffix."()\" ".$button_class.">Find Address</button></span>";
-			} else {
-				$buttonHTML = "<span id=\"findAddrBtn".$suffix."\">&nbsp;&nbsp;<img style=\"cursor: pointer;\" src=\"".$obj->getSkinUrl('craftyclicks/'.$conf['craftyclicks']['button_image'])."\" onclick=\"_cp_do_lookup".$suffix."()\" title=\"Find Address\" ".$button_class."/></span>";
-			}
-
-			$resultHTML = "<div style=\"display:block; clear:both;\" id=\"crafty_postcode_result_display".$suffix."\">&nbsp;</div>";
-			echo "
-				var _cp_postcodeHTML = document.getElementById('".$postcode_id."').parentNode.innerHTML;
-				document.getElementById('".$postcode_id."').parentNode.innerHTML = _cp_postcodeHTML+'".$buttonHTML."';
-				var _cp_liHTML = document.getElementById('".$postcode_id."').parentNode.parentNode.innerHTML;
-				document.getElementById('".$postcode_id."').parentNode.parentNode.innerHTML = _cp_liHTML+'".$resultHTML."';
-			";
-		}
-
 		if (1 == $conf['craftyclicks']['hide_fields'] && '' == $obj->getAddress()->getPostcode()) {
 			// hide address fields if they are blank, only show them once an address is selected
 			echo "
@@ -68,6 +46,7 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 			echo "
 			function _cp_addr_result_hide".$suffix."() {
 				cp_obj".$suffix.".update_res(null);
+				document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'none'; 
 			}
 			";
 		} else {
@@ -98,6 +77,9 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 		echo "
 		function _cp_result_ready".$suffix."() {
 			_cp_addr_fields_show".$suffix."();
+		}
+		
+		function _cp_result_selected".$suffix."() {
 			_cp_addr_result_hide".$suffix."();
 		}
 		function _cp_result_error".$suffix."() {
@@ -110,27 +92,34 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 		function _cp_country_handler".$suffix."() {
 			if ('GB' != document.getElementById('".$country_id."').value) {
 				document.getElementById('".$postcode_id."').style.width = _cp_oldZipWidth".$suffix.";
-				document.getElementById('findAddrBtn".$suffix."').style.display = 'none'; 
-				_cp_result_ready".$suffix."();
+				document.getElementById('zipDiv').style.width = _cp_oldZipDivWidth".$suffix.";
+				document.getElementById('findAddrBtnDiv".$suffix."').style.display = 'none'; 
+				document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'none'; 
+				_cp_addr_fields_show".$suffix."();
 				cp_obj".$suffix.".update_res(null);
 				_cp_county_display".$suffix."('inline');
 			} else {
-				document.getElementById('".$postcode_id."').style.width = '80px';
-				document.getElementById('findAddrBtn".$suffix."').style.display = 'inline'; 
+				document.getElementById('".$postcode_id."').style.width = '135px';
+				document.getElementById('zipDiv".$suffix."').style.width = '150px';
+				document.getElementById('findAddrBtnDiv".$suffix."').style.width = '125px';
+				document.getElementById('findAddrBtnDiv".$suffix."').style.display = 'inline'; 
 				_cp_county_display".$suffix."('none');
 			}
 		}
 		function _cp_do_lookup".$suffix."()
 		{
 			document.getElementById('crafty_postcode_result_display".$suffix."').className = '';
+			document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'inline'; 
 			cp_obj".$suffix.".doLookup();
 		}
 			
 		var _cp_oldZipWidth".$suffix." = document.getElementById('". $postcode_id."').style.width; 
+		var _cp_oldZipDivWidth".$suffix." = document.getElementById('zipDiv').style.width; 
 		var _cp_countryElem".$suffix." = document.getElementById('".$country_id."');
-		_cp_countryElem".$suffix.".onchange = _cp_country_handler".$suffix.";
-		_cp_countryElem".$suffix.".onclick = _cp_country_handler".$suffix.";
-		_cp_countryElem".$suffix.".onkeypress = _cp_country_handler".$suffix.";
+		
+        Event.observe(_cp_countryElem".$suffix.", 'change',  _cp_country_handler".$suffix.");
+        Event.observe(_cp_countryElem".$suffix.", 'click',  _cp_country_handler".$suffix.");
+        Event.observe(_cp_countryElem".$suffix.", 'keypress',  _cp_country_handler".$suffix.");
 
 		_cp_country_handler".$suffix."();	
 	
@@ -151,13 +140,16 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 		$element_ids.=$town_id.','.$county_id.','.$postcode_id;
 
 		echo "
-		cp_obj".$suffix.".set('elements', '".$element_ids."');  
-		cp_obj".$suffix.".set('first_res_line', '----- please select your address ----'); 
+		cp_obj".$suffix.".set('elements', '".$element_ids."');
 		cp_obj".$suffix.".set('res_autoselect', '0');
 		cp_obj".$suffix.".set('busy_img_url', '".$obj->getSkinUrl('craftyclicks/crafty_postcode_busy.gif')."');
-		cp_obj".$suffix.".set('res_select_on_change', '0');
-		cp_obj".$suffix.".set('on_result_selected', _cp_result_ready".$suffix.");
-		cp_obj".$suffix.".set('on_error', _cp_result_error".$suffix.");";
+		cp_obj".$suffix.".set('on_result_ready', _cp_result_ready".$suffix.");
+		cp_obj".$suffix.".set('on_result_selected', _cp_result_selected".$suffix.");
+		cp_obj".$suffix.".set('on_error', _cp_result_error".$suffix.");
+		";
+		if (array_key_exists('first_res_line',$conf['craftyclicks']) && '' != $conf['craftyclicks']['first_res_line']) {
+			echo "		cp_obj".$suffix.".set('first_res_line', '".$conf['craftyclicks']['first_res_line']."');";
+		}
 		if (array_key_exists('error_msg_1',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_1']) {
 			echo "		cp_obj".$suffix.".set('err_msg1', '".$conf['craftyclicks']['error_msg_1']."');";
 		}

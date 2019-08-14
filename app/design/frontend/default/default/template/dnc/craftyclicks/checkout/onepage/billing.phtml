@@ -36,8 +36,7 @@
             <li><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress())
                 ->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?></li>
             <li>
- 	<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active') ||
-			  1 != Mage::getStoreConfig('general/craftyclicks/change_fields')) : ?>
+ 	<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active')) : ?>
 				<div class="input-box">
                 <label for="billing:company"><?php echo $this->__('Company') ?></label><br />
                 <input type="text" id="billing:company" name="billing[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" /></div>
@@ -48,15 +47,24 @@
                 <input type="text" name="billing[email]" id="billing:email" value="<?php echo $this->htmlEscape($this->getAddress()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="validate-email required-entry input-text" /></div>
     <?php endif ?>
                 </li>
-	<?php if (1 == Mage::getStoreConfig('general/craftyclicks/active') &&
-			  1 == Mage::getStoreConfig('general/craftyclicks/change_fields')) : ?>
+	<?php if (1 == Mage::getStoreConfig('general/craftyclicks/active')) : ?>
             <li><div class="input-box">
                 <label for="billing:country_id"><?php echo $this->__('Country') ?> <span class="required">*</span></label><br />
                 <?php echo $this->getCountryHtmlSelect('billing') ?></div>
-				<div class="input-box">
+				<div class="input-box" id="zipDiv">
                 <label for="billing:postcode"><?php echo $this->__('Zip/Postal Code') ?> <span class="required">*</span></label><br />
                 <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" /></div>
-                </li>
+				<div class="input-box" id="findAddrBtnDiv" style="display:none;"><br />
+					&nbsp;
+					<?php if ('' != Mage::getStoreConfig('general/craftyclicks/button_image')) : ?>
+						<img style="cursor: pointer;" src="<?php echo $this->getSkinUrl('craftyclicks/'.Mage::getStoreConfig('general/craftyclicks/button_image')); ?>" onclick="_cp_do_lookup()" title="Find Address" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>"/>
+					<?php else : ?>
+						<button type="button" onclick="_cp_do_lookup()" class="<?php echo Mage::getStoreConfig('general/craftyclicks/button_class');?>">Find Address</button>
+					<?php endif ?>
+				</div>
+				</li>
+			<li><span style="display:none;" id="crafty_postcode_result_display">&nbsp;
+				</span></li>
             <li>
 				<div class="input-box">
                 <label for="billing:company"><?php echo $this->__('Company') ?></label><br />
@@ -81,8 +89,7 @@
                 </script>
                 <input type="text" id="billing:region" name="billing[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none" />
                 </div></li>
-	<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active') ||
-			  1 != Mage::getStoreConfig('general/craftyclicks/change_fields')) : ?>
+	<?php if (1 != Mage::getStoreConfig('general/craftyclicks/active')) : ?>
             <li><div class="input-box">
                 <label for="billing:postcode"><?php echo $this->__('Zip/Postal Code') ?> <span class="required">*</span></label><br />
                 <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" /></div>

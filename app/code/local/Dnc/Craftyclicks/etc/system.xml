@@ -39,17 +39,6 @@
 							<show_in_store>0</show_in_store>
 						</access_token>
 
-						<add_elements translate="label">
-							<label>Generate Button and Results Box</label>
-							<frontend_type>select</frontend_type>
-							<source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>10</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>0</show_in_store>
-							<comment>Select to automatically create a 'Find Address' button and a results box using JavaScript DOM. This might not work on some templates. To get more control over the placing/styling you may prefer to modify your template files by hand.</comment>
-						</add_elements>
-
 						<button_image translate="label">
 							<label>Button Image</label>
 							<frontend_type>text</frontend_type>
@@ -57,7 +46,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>If you set 'Generate Button and Results Box' to 'yes' here you can enter an image file name to use as the 'Find Address' button. Leave blank for a browser default button. Images shoul dbe placed in /craftclicks in you skin folder.</comment>
+							<comment>Here you can enter an image file name to use as the 'Find Address' button. Leave blank for a default Magento button. Images should be placed under /craftclicks in you skin folder.</comment>
 						</button_image>
 
 						<button_class translate="label">
@@ -67,19 +56,8 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>If you set 'Generate Button and Results Box' to 'yes' here you can set the css class to use for the 'Find Address' button. Leave blank for a browser default button. Try 'form-button-alt'.</comment>
+							<comment>Here you can set the css class to use for the 'Find Address' button. Leave blank for a browser default button. Try 'form-button-alt'.</comment>
 						</button_class>
-
-						<change_fields translate="label">
-							<label>Change Address Fields Order</label>
-							<frontend_type>select</frontend_type>
-							<source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>15</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>0</show_in_store>
-							<comment>Select to have address fields order changed automatically (might not work on some templates). The new order: country, postcode, street, town.</comment>
-						</change_fields>
 
 						<hide_fields translate="label">
 							<label>Hide Address Fields for New Address Entry</label>
@@ -89,7 +67,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>Select to hide address fields until a postcode is looked up and an address is selected (might not work on some templates). Address fields are only hidden if they are blank (i.e. new address entry, not edit).</comment>
+							<comment>Select to hide address fields until a postcode is looked up and an address is selected. Address fields are only hidden if they are blank (i.e. new address entry, not edit).</comment>
 						</hide_fields>
 
 						<hide_county translate="label">
@@ -124,6 +102,16 @@
 							<comment>Set the css class to use for the error messages. Try 'error-msg', 'error' or even leave it blank.</comment>
 						</error_class>
 
+						<first_res_line translate="label">
+							<label>First Result Line</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>33</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Text to place as first line in the result drop-down box.</comment>
+						</first_res_line>
+
 						<error_msg_1 translate="label">
 							<label>Error Msg #1</label>
 							<frontend_type>text</frontend_type>
@@ -131,7 +119,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>This message is shown if the postcode is in valid format, but not found int he database'.</comment>
+							<comment>This message is shown if the postcode is in valid format, but not found int the database.</comment>
 						</error_msg_1>
 
 						<error_msg_2 translate="label">
@@ -141,7 +129,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>This message is shown if the postcode format is not valid'.</comment>
+							<comment>This message is shown if the postcode format is not valid.</comment>
 						</error_msg_2>
 
 						<error_msg_3 translate="label">
@@ -151,7 +139,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>This message is shown if the connection to lookup server times out'.</comment>
+							<comment>This message is shown if the connection to lookup server times out.</comment>
 						</error_msg_3>
 
 						<error_msg_4 translate="label">
@@ -161,7 +149,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>This message is shown if any other error occurs'.</comment>
+							<comment>This message is shown if any other error occurs.</comment>
 						</error_msg_4>
 
 						<help_label translate="label">

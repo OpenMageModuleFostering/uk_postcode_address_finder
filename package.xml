@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>UK_Postcode_Address_Finder</name>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/osl-3.0.php">Open Software License ("OSL") v. 3.0</license>
     <channel>community</channel>
@@ -17,6 +17,13 @@ Please note:
 
 2. The extension is free to try and install, but to go live a paid up account with CraftyClicks.co.uk will be required. For current prices please go to http://www.craftyclicks.co.uk/prices</description>
     <notes>Release History :
+v 1.5.0
+* add config option for 1st result line.
+* avoid using JavaScript DOM for modifying address forms - it was conflicting with Magento JavaScript. 
+  We now edit the template .phtml files directly.
+* fix problems with re-displaying state select box when country is changed from UK to USA.
+* fix problem with postcode error message affecting button position if form was submitted with a blank postcode.
+
 v 1.4.0
 * make error message class configurable - it can now be styled to match other Magento errors
 * make error message text configurable
@@ -47,9 +54,9 @@ v 1.1.0
 
 v 1.0.0 - Initial Release</notes>
     <authors><author><name>Adam Stylo</name><user>auto-converted</user><email>adam@craftyclicks.co.uk</email></author></authors>
-    <date>2009-10-06</date>
-    <time>14:08:54</time>
-    <contents><target name="mage"><dir name="app"><dir name="design"><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="craftyclicks.xml" hash="3167430f327a75925cb13d037b517e8f"/></dir><dir name="template"><dir name="dnc"><dir name="craftyclicks"><file name="address_form.phtml" hash="fcb3cc2696ac5b98c9ba7a2e87d908ae"/><file name="checkout_onepage.phtml" hash="a083c7d757e759520543e1d13e86191c"/><file name="crafty_template_helper.php" hash="b3e03aa8f291664695ca7b02461f5e6f"/><dir name="checkout"><dir name="onepage"><file name="billing.phtml" hash="d80f77c43a935a9b1c46206822e4a6b8"/><file name="shipping.phtml" hash="3524544b27ae6046161e8c39ffe5fa36"/></dir></dir><dir name="customer"><dir name="address"><file name="edit.phtml" hash="b851dd752bd9f514ba5912525d9c21eb"/></dir></dir></dir></dir></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="Dnc_Craftyclicks.xml" hash="127ba6f97809015e3d88afc2ee367999"/></dir></dir></dir></target><target name="magelocal"><dir name="Dnc"><dir name="Craftyclicks"><dir name="etc"><file name="config.xml" hash="d62fa29e6168aa9d042105f764ffb879"/><file name="system.xml" hash="4a5aa7ffb9ca119c25c5f8fefa9d2e9f"/></dir><dir name="Helper"><file name="Data.php" hash="10c8592d3f990953767d6c96c2d0d5f4"/></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="craftyclicks"><file name="button_find_address.gif" hash="eb17331be28df3bd05fc1236202f262a"/><file name="crafty_postcode_busy.gif" hash="618a14f4dca4f51100cd2400e7f9049c"/></dir></dir></dir></dir></target><target name="mageweb"><dir name="js"><dir name="crafty"><file name="crafty_postcode.js" hash="4cf8526ef38554c5ff14b25fc66aea3c"/></dir></dir></target></contents>
+    <date>2009-12-04</date>
+    <time>10:37:31</time>
+    <contents><target name="mage"><dir name="app"><dir name="design"><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="craftyclicks.xml" hash="3167430f327a75925cb13d037b517e8f"/></dir><dir name="template"><dir name="dnc"><dir name="craftyclicks"><file name="address_form.phtml" hash="fcb3cc2696ac5b98c9ba7a2e87d908ae"/><file name="checkout_onepage.phtml" hash="a083c7d757e759520543e1d13e86191c"/><file name="crafty_template_helper.php" hash="acb82df4fcb2ba40271c9633f17cb7a0"/><dir name="checkout"><dir name="onepage"><file name="billing.phtml" hash="f51ac769fb1e90cd4ea6e8bba3ac819d"/><file name="shipping.phtml" hash="69a42e999e1ccd5ebebd4b12ad9720d7"/></dir></dir><dir name="customer"><dir name="address"><file name="edit.phtml" hash="3742dd587b877780b7229e81704a9232"/></dir></dir></dir></dir></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="Dnc_Craftyclicks.xml" hash="4de8ea2a29de0295e8766d4ba3a2071d"/></dir></dir></dir></target><target name="magelocal"><dir name="Dnc"><dir name="Craftyclicks"><dir name="etc"><file name="config.xml" hash="d4bdd4a6f9bce07bbb0968343e46d23a"/><file name="system.xml" hash="52c6a51d533deb0e296344ff93ed23eb"/></dir><dir name="Helper"><file name="Data.php" hash="10c8592d3f990953767d6c96c2d0d5f4"/></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="craftyclicks"><file name="button_find_address.gif" hash="0fdef9bf7ad0f7ec3f6530b7ff40bf59"/><file name="crafty_postcode_busy.gif" hash="618a14f4dca4f51100cd2400e7f9049c"/></dir></dir></dir></dir></target><target name="mageweb"><dir name="js"><dir name="crafty"><file name="crafty_postcode.js" hash="4cf8526ef38554c5ff14b25fc66aea3c"/></dir></dir></target></contents>
     <compatible/>
     <dependencies/>
 </package>

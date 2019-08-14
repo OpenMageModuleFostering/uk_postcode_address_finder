@@ -12,7 +12,7 @@
 <config>
 	<modules>
 		<Dnc_Craftyclicks>
-			<version>1.4.0</version>
+			<version>1.5.0</version>
 		</Dnc_Craftyclicks>
 	</modules>
 	
@@ -40,14 +40,13 @@
 				<active>0</active>
 				<model>dnc/craftyclicks</model>
 				<access_token>xxxxx-xxxxx-xxxxx-xxxxx</access_token>
-				<add_elements>1</add_elements>
 				<button_image></button_image>
 				<button_class>form-button-alt</button_class>
-				<change_fields>1</change_fields>
 				<hide_fields>0</hide_fields>
 				<hide_county>1</hide_county>
 				<clear_result>0</clear_result>
 				<error_class>error</error_class>
+				<first_res_line>----- please select your address ----</first_res_line>
 				<error_msg_1>This postcode could not be found, please try again or enter your address manually</error_msg_1>
 				<error_msg_2>This postcode is not valid, please try again or enter your address manually</error_msg_2>
 				<error_msg_3>Unable to connect to address lookup server, please enter your address manually</error_msg_3>
