@@ -12,7 +12,7 @@
 <config>
 	<modules>
 		<Dnc_Craftyclicks>
-			<version>1.5.1</version>
+			<version>1.6.0</version>
 		</Dnc_Craftyclicks>
 	</modules>
 	
@@ -38,6 +38,7 @@
 		<general>
 			<craftyclicks>
 				<active>0</active>
+				<active_admin>0</active_admin>
 				<model>dnc/craftyclicks</model>
 				<access_token>xxxxx-xxxxx-xxxxx-xxxxx</access_token>
 				<button_image></button_image>

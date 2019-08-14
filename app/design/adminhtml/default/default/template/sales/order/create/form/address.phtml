@@ -1,0 +1,148 @@
+<?php if($this->getIsShipping()):
+    $_fieldsContainerId = 'order-shipping_address_fields';
+    ?>
+    <script type="text/javascript">
+    order.shippingAddressContainer = '<?php echo $_fieldsContainerId ?>';
+    order.setAddresses(<?php echo $this->getAddressCollectionJson() ?>);
+    </script>
+    <?php
+else:
+    $_fieldsContainerId = 'order-billing_address_fields';
+    ?>
+    <script type="text/javascript">
+    order.billingAddressContainer = '<?php echo $_fieldsContainerId ?>';
+    </script>
+    <?php
+endif; ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head fieldset-legend <?php echo $this->getHeaderCssClass() ?>"><?php echo $this->getHeaderText() ?></h4>
+     </div>
+
+    <fieldset class="np">
+    <div class="order-choose-address">
+        <?php echo Mage::helper('sales')->__('Select from existing customer addresses:') ?><br />
+        <?php $_id = $this->getForm()->getHtmlIdPrefix() . 'customer_address_id' ?>
+        <select id="<?php echo $_id ?>"  name="<?php echo $this->getForm()->getHtmlNamePrefix()?>[customer_address_id]" style="width:97.5%;" onchange="order.selectAddress(this, '<?php echo $_fieldsContainerId ?>')">
+            <option value=""><?php echo Mage::helper('sales')->__('Add New Address') ?></option>
+            <?php foreach ($this->getAddressCollection() as $_address): ?>
+            <?php //if($this->getAddressAsString($_address)!=$this->getAddressAsString($this->getAddress())): ?>
+            <option value="<?php echo $_address->getId() ?>"<?php if ($_address->getId()==$this->getAddressId()): ?> selected="selected"<?php endif; ?>>
+                <?php echo $this->getAddressAsString($_address) ?>
+            </option>
+            <?php //endif; ?>
+            <?php endforeach; ?>
+
+        </select>
+        <br />
+        <?php if($this->getIsShipping()): ?>
+            <input type="checkbox" id="order-shipping_same_as_billing" name="shipping_same_as_billing" onchange="order.setShippingAsBilling(this.checked)" <?php if($this->getIsAsBilling()): ?>checked<?php endif; ?>/>
+            <label for="order-shipping_same_as_billing" class="no-float"><?php echo Mage::helper('sales')->__('Same As Billing Address') ?></label>
+        <?php else: ?>
+            &nbsp;
+        <?php endif; ?>
+    </div>
+
+    <div class="order-address" id="<?php echo $_fieldsContainerId ?>">
+        <div class="content">
+            <?php echo $this->getForm()->toHtml() ?>
+        </div>
+        <div class="order-save-in-address-book">
+            <input name="<?php echo $this->getForm()->getHtmlNamePrefix()?>[save_in_address_book]" type="checkbox" id="<?php echo $this->getForm()->getHtmlIdPrefix()?>save_in_address_book" value="1" <?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?>/>
+            <label for="<?php echo $this->getForm()->getHtmlIdPrefix()?>save_in_address_book"><?php echo Mage::helper('sales')->__('Save in address book') ?></label>
+        </div>
+    </div>
+    <?php $hideElement = 'address-' . ($this->getIsShipping() ? 'shipping' : 'billing') . '-overlay'; ?>
+    <div style="display:none;" id="<?php echo $hideElement ?>" class="overlay"><span><?php echo $this->__('Shipping address selection is not applicable') ?></span></div>
+    <script type="text/javascript">
+        order.bindAddressFields('<?php echo $_fieldsContainerId ?>')
+        <?php if($this->getIsShipping() && $this->getIsAsBilling()): ?>
+        order.disableShippingAddress(true);
+        <?php endif; ?>
+    </script>
+    </fieldset>
+</div>
+<?php // CraftyClicks - Start
+$conf = Mage::getStoreConfig('general');		
+if ($conf['craftyclicks']['active_admin']) : 
+	if( ! $this->getIsShipping()) : 
+		$cp_access_token = $conf['craftyclicks']['access_token'];	
+?>
+<script type="text/javascript" charset="ISO-8859-1" src="<?php echo $this->getJsUrl('crafty/crafty_postcode.js'); ?>"></script>
+<script type="text/javascript">
+//<![CDATA[
+var cp_obj = new Array();
+function ch_country () {
+	if (this.value!='GB') 
+		$(this.alt+'findAddrBtn').style.display = 'none'; 
+	else
+		$(this.alt+'findAddrBtn').style.display = 'inline'; 
+}
+ 
+function do_look() {
+	cp_obj[this.alt].doLookup();
+}
+
+function add_crafty_clicks(item_html_id) {
+	if (!cp_obj[item_html_id]) {
+		// create a crafty clicks object
+		cp_obj[item_html_id] = CraftyPostcodeCreate();
+		cp_obj[item_html_id].set("max_width", '100%');
+		cp_obj[item_html_id].set("access_token", '<?php echo $cp_access_token; ?>'); 
+		cp_obj[item_html_id].set("result_elem_id", item_html_id+'crafty');
+		cp_obj[item_html_id].set("form", "");
+		cp_obj[item_html_id].set("elements", item_html_id+"company,"+item_html_id+"street0,"+item_html_id+"street1,,"+item_html_id+"city,"+item_html_id+"region,"+item_html_id+"postcode");
+		cp_obj[item_html_id].set("first_res_line", "----- please select your address ----");
+		cp_obj[item_html_id].set("res_autoselect", "0");
+		cp_obj[item_html_id].set("busy_img_url", "<?php echo $this->getJsUrl('crafty/crafty_postcode_busy.gif'); ?>");
+		
+		// create the 'find address' button
+		var fndBtn;  	
+		fndBtn = document.createElement('input');
+		fndBtn.type='button';
+		fndBtn.alt = item_html_id;
+		fndBtn.id = item_html_id+'findAddrBtn';
+		fndBtn.value='<?php echo $this->__('Find Address') ?>';
+		fndBtn.style.display='none';
+		fndBtn.style.fontSize='10px';
+		fndBtn.style.width='70px';
+
+//		$(item_html_id+'postcode').style.width = '100px';
+		$(item_html_id+'postcode').setAttribute('style', 'width:100px !important');
+
+		$(item_html_id+'postcode').parentNode.appendChild(fndBtn);
+		Event.observe(fndBtn.id, 'click', do_look);
+
+		var resTr = document.createElement('tr');
+		var resTd = document.createElement('td');
+		resTd.colSpan = '3';
+		resTd.id = item_html_id+'crafty'
+		resTr.appendChild(resTd);
+		var pcTr = $(item_html_id+'postcode').parentNode.parentNode;
+		pcTr.parentNode.insertBefore(resTr, pcTr.nextSibling);
+
+		$(item_html_id+'country_id').alt = item_html_id;
+		Event.observe(item_html_id+'country_id', 'change', ch_country);
+	}
+	// make button visible if country is UK
+	if ($(item_html_id+'country_id').value!='GB') 
+		$(item_html_id+'findAddrBtn').style.display = 'none'; 
+	else
+		$(item_html_id+'findAddrBtn').style.display = 'inline';
+}
+add_crafty_clicks('order-billing_address_');
+//]]>
+</script>
+<?php 
+endif; // if( ! $this->getIsShipping()) :
+
+if($this->getIsShipping()): ?>
+
+	<script type="text/javascript">
+	//<![CDATA[
+		add_crafty_clicks('order-shipping_address_')
+	//]]>
+	</script>
+<?php 
+endif; // if($this->getIsShipping()):
+endif; // CraftyClicks - End ?>
