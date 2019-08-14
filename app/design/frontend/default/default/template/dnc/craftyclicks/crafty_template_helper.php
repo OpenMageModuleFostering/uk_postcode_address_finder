@@ -11,7 +11,50 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 			$crafty_script_added = true;
 		}
 
-		echo "<script type=\"text/javascript\">";
+		echo "<script type=\"text/javascript\">
+		
+		var cp_obj".$suffix." = CraftyPostcodeCreate();
+		cp_obj".$suffix.".set('max_width', '530px');
+		cp_obj".$suffix.".set('access_token', '".$conf['craftyclicks']['access_token']."'); 
+		cp_obj".$suffix.".set('result_elem_id', 'crafty_postcode_result_display".$suffix."');
+		cp_obj".$suffix.".set('form', '');";
+
+		$element_ids = $company_id.',';
+		for ($streetNum = 1; $streetNum<=3; $streetNum++) {
+			if ($streetNum<=$obj->helper('customer/address')->getStreetLines()) {
+				$element_ids.= $street_id.$streetNum.',';
+			} else {
+				$element_ids.= ',';
+			}
+		}
+		$element_ids.=$town_id.','.$county_id.','.$postcode_id;
+
+		echo "
+		cp_obj".$suffix.".set('elements', '".$element_ids."');
+		cp_obj".$suffix.".set('res_autoselect', '0');
+		cp_obj".$suffix.".set('busy_img_url', '".$obj->getSkinUrl('craftyclicks/crafty_postcode_busy.gif')."');
+		cp_obj".$suffix.".set('on_result_ready', _cp_result_ready".$suffix.");
+		cp_obj".$suffix.".set('on_result_selected', _cp_result_selected".$suffix.");
+		cp_obj".$suffix.".set('on_error', _cp_result_error".$suffix.");
+		";
+		if (array_key_exists('first_res_line',$conf['craftyclicks']) && '' != $conf['craftyclicks']['first_res_line']) {
+			echo "		cp_obj".$suffix.".set('first_res_line', '".$conf['craftyclicks']['first_res_line']."');";
+		}
+		if (array_key_exists('error_msg_1',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_1']) {
+			echo "		cp_obj".$suffix.".set('err_msg1', '".$conf['craftyclicks']['error_msg_1']."');";
+		}
+		if (array_key_exists('error_msg_2',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_2']) {
+			echo "		cp_obj".$suffix.".set('err_msg2', '".$conf['craftyclicks']['error_msg_2']."');";
+		}
+		if (array_key_exists('error_msg_3',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_3']) {
+			echo "		cp_obj".$suffix.".set('err_msg3', '".$conf['craftyclicks']['error_msg_3']."');";
+		}
+		if (array_key_exists('error_msg_4',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_4']) {
+			echo "		cp_obj".$suffix.".set('err_msg4', '".$conf['craftyclicks']['error_msg_4']."');";
+		}
+		echo "
+		
+		";
 		
 		if (1 == $conf['craftyclicks']['hide_fields'] && '' == $obj->getAddress()->getPostcode()) {
 			// hide address fields if they are blank, only show them once an address is selected
@@ -123,46 +166,6 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 
 		_cp_country_handler".$suffix."();	
 	
-		var cp_obj".$suffix." = CraftyPostcodeCreate();
-		cp_obj".$suffix.".set('max_width', '530px');
-		cp_obj".$suffix.".set('access_token', '".$conf['craftyclicks']['access_token']."'); 
-		cp_obj".$suffix.".set('result_elem_id', 'crafty_postcode_result_display".$suffix."');
-		cp_obj".$suffix.".set('form', '');";
-
-		$element_ids = $company_id.',';
-		for ($streetNum = 1; $streetNum<=3; $streetNum++) {
-			if ($streetNum<=$obj->helper('customer/address')->getStreetLines()) {
-				$element_ids.= $street_id.$streetNum.',';
-			} else {
-				$element_ids.= ',';
-			}
-		}
-		$element_ids.=$town_id.','.$county_id.','.$postcode_id;
-
-		echo "
-		cp_obj".$suffix.".set('elements', '".$element_ids."');
-		cp_obj".$suffix.".set('res_autoselect', '0');
-		cp_obj".$suffix.".set('busy_img_url', '".$obj->getSkinUrl('craftyclicks/crafty_postcode_busy.gif')."');
-		cp_obj".$suffix.".set('on_result_ready', _cp_result_ready".$suffix.");
-		cp_obj".$suffix.".set('on_result_selected', _cp_result_selected".$suffix.");
-		cp_obj".$suffix.".set('on_error', _cp_result_error".$suffix.");
-		";
-		if (array_key_exists('first_res_line',$conf['craftyclicks']) && '' != $conf['craftyclicks']['first_res_line']) {
-			echo "		cp_obj".$suffix.".set('first_res_line', '".$conf['craftyclicks']['first_res_line']."');";
-		}
-		if (array_key_exists('error_msg_1',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_1']) {
-			echo "		cp_obj".$suffix.".set('err_msg1', '".$conf['craftyclicks']['error_msg_1']."');";
-		}
-		if (array_key_exists('error_msg_2',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_2']) {
-			echo "		cp_obj".$suffix.".set('err_msg2', '".$conf['craftyclicks']['error_msg_2']."');";
-		}
-		if (array_key_exists('error_msg_3',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_3']) {
-			echo "		cp_obj".$suffix.".set('err_msg3', '".$conf['craftyclicks']['error_msg_3']."');";
-		}
-		if (array_key_exists('error_msg_4',$conf['craftyclicks']) && '' != $conf['craftyclicks']['error_msg_4']) {
-			echo "		cp_obj".$suffix.".set('err_msg4', '".$conf['craftyclicks']['error_msg_4']."');";
-		}
-		echo "
 		</script>";
 	} 
 }
