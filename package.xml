@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<package>
+    <name>UK_Postcode_Address_Finder</name>
+    <version>1.4.0</version>
+    <stability>stable</stability>
+    <license uri="http://www.opensource.org/licenses/osl-3.0.php">Open Software License ("OSL") v. 3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>UK address auto completion functionality. Uses CraftyClicks.co.uk web service to lookup address from a postcode.</summary>
+    <description>This extension provides auto completion functionality on all postal address forms. Shoppers simply enter their postcode and are given a list of matching addresses to select from. Address entry is greatly speeded up thus improving the user experience.
+
+The benefits for the merchant are lower drop off rates on checkout/registration and improved quality of address data captured.
+
+Please note:
+
+1. This extension currently only works for UK postcodes. If country selected is not UK, the 'find address' button is not shown.
+
+2. The extension is free to try and install, but to go live a paid up account with CraftyClicks.co.uk will be required. For current prices please go to http://www.craftyclicks.co.uk/prices</description>
+    <notes>Release History :
+v 1.4.0
+* make error message class configurable - it can now be styled to match other Magento errors
+* make error message text configurable
+* fix issue with error message not being shown if hiding of address fields was enabled
+
+v 1.3.0
+* populate the company field if company name is available
+* unhide all address lines on lookup error to allow customer to enter the address manually
+* update to latest CraftyClicks JavaScript (v3.5):
+      - added the on_error event
+      - fixed selection of result using keyboard (got broken in latest Firefox v3.5)
+
+v 1.2.0 
+* can now hide the region/province (county) field
+* update to latest CraftyClicks JavaScript (v3.4)
+
+v 1.1.2 (bug fix release)
+* fix typo in JS code
+
+v 1.1.1 (bug fix release)
+* fix rearranging address fields order; was causing problems on one page checkout
+* fix hiding of result box on result select
+* hide result box on country change
+
+v 1.1.0 
+* added Admin Panel options to configure look and feel of the module
+* add address lookup to multiship checkout pages
+
+v 1.0.0 - Initial Release</notes>
+    <authors><author><name>Adam Stylo</name><user>auto-converted</user><email>adam@craftyclicks.co.uk</email></author></authors>
+    <date>2009-10-06</date>
+    <time>14:08:54</time>
+    <contents><target name="mage"><dir name="app"><dir name="design"><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="craftyclicks.xml" hash="3167430f327a75925cb13d037b517e8f"/></dir><dir name="template"><dir name="dnc"><dir name="craftyclicks"><file name="address_form.phtml" hash="fcb3cc2696ac5b98c9ba7a2e87d908ae"/><file name="checkout_onepage.phtml" hash="a083c7d757e759520543e1d13e86191c"/><file name="crafty_template_helper.php" hash="b3e03aa8f291664695ca7b02461f5e6f"/><dir name="checkout"><dir name="onepage"><file name="billing.phtml" hash="d80f77c43a935a9b1c46206822e4a6b8"/><file name="shipping.phtml" hash="3524544b27ae6046161e8c39ffe5fa36"/></dir></dir><dir name="customer"><dir name="address"><file name="edit.phtml" hash="b851dd752bd9f514ba5912525d9c21eb"/></dir></dir></dir></dir></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="Dnc_Craftyclicks.xml" hash="127ba6f97809015e3d88afc2ee367999"/></dir></dir></dir></target><target name="magelocal"><dir name="Dnc"><dir name="Craftyclicks"><dir name="etc"><file name="config.xml" hash="d62fa29e6168aa9d042105f764ffb879"/><file name="system.xml" hash="4a5aa7ffb9ca119c25c5f8fefa9d2e9f"/></dir><dir name="Helper"><file name="Data.php" hash="10c8592d3f990953767d6c96c2d0d5f4"/></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="craftyclicks"><file name="button_find_address.gif" hash="eb17331be28df3bd05fc1236202f262a"/><file name="crafty_postcode_busy.gif" hash="618a14f4dca4f51100cd2400e7f9049c"/></dir></dir></dir></dir></target><target name="mageweb"><dir name="js"><dir name="crafty"><file name="crafty_postcode.js" hash="4cf8526ef38554c5ff14b25fc66aea3c"/></dir></dir></target></contents>
+    <compatible/>
+    <dependencies/>
+</package>

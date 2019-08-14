@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dnc_Craftyclicks>
+            <active>true</active>
+            <codePool>local</codePool>
+            <version>1.4.0</version>
+        </Dnc_Craftyclicks>
+    </modules>
+</config>

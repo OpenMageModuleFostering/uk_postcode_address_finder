@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<layout>
+
+	<checkout_onepage_index>                             
+       <reference name="checkout.onepage.billing">
+            <action method="setTemplate"><template>dnc/craftyclicks/checkout/onepage/billing.phtml</template></action>
+        </reference>
+        <reference name="checkout.onepage.shipping">
+            <action method="setTemplate"><template>dnc/craftyclicks/checkout/onepage/shipping.phtml</template></action>
+        </reference>
+		<reference name="content">
+	        <block type="checkout/onepage_billing" name="checkout.onepage.billing" as="billing" template="dnc/craftyclicks/checkout_onepage.phtml"/>
+	    </reference>
+	</checkout_onepage_index>
+	
+	<checkout_multishipping_customer_address>                             
+       <reference name="customer_address_edit">
+            <action method="setTemplate"><template>dnc/craftyclicks/customer/address/edit.phtml</template></action>
+        </reference>
+		<reference name="content">
+	            <block type="customer/address_edit" name="customer.address.edit" as="shipping" template="dnc/craftyclicks/address_form.phtml"/>
+	    </reference>
+	</checkout_multishipping_customer_address>
+		
+	<customer_address_form>                             
+        <reference name="customer_address_edit">
+            <action method="setTemplate"><template>dnc/craftyclicks/customer/address/edit.phtml</template></action>
+        </reference>
+		<reference name="content">
+	            <block type="customer/address_edit" name="customer.address.edit" template="dnc/craftyclicks/address_form.phtml"/>
+	    </reference>
+	</customer_address_form>		
+
+</layout>

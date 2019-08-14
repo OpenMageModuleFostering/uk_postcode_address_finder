@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/UK_Postcode_Address_Finder",
+    "type": "magento-module",
+    "license": "Open-Software-License-("OSL")-v.-3.0",
+    "homepage": "",
+    "description": "UK address auto completion functionality. Uses CraftyClicks.co.uk web service to lookup address from a postcode.",
+    "authors": [
+    {
+        "name": "Adam Stylo",
+        "email": "adam@craftyclicks.co.uk"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
