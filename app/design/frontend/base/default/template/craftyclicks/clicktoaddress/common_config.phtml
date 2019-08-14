@@ -1,0 +1,87 @@
+<?php
+
+$conf = Mage::getStoreConfig('clicktoaddress/general');
+
+$js_config = "";
+
+if (1 == $conf['active']) {
+
+	/* ---------------------------------------------------------------------------
+		This is a workaround for Amestys lack of hookable layout tag.
+	--------------------------------------------------------------------------- */
+	$ams = Mage::getStoreConfig('amscheckout');
+	if (isset($ams)){
+		$js_config .= " var _cp_integrate = false;";
+		$js_config .= " var _cp_integrate_amesty = true;";
+		echo '<script src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'craftyclicks/craftyclicks_amesty_onepagecheckout.js"></script>';
+	}
+	else{
+		$js_config .= " var _cp_integrate = true;";
+	}
+	$js_config.= " var _cp_enable_for_uk_only = true;"; // if true, the button will show up only for UK
+	if (array_key_exists('button_image',$conf) && '' != $conf['button_image']) {
+		$js_config.= " var _cp_button_image = '".$this->getSkinUrl('images/craftyclicks/'.$conf['button_image'])."';";
+	} else {
+		$js_config.= " var _cp_button_image = '';";
+	}
+	$js_config.= " var _cp_button_text = 'Find Address';";
+	$js_config.= " var _cp_button_class = '".$conf['button_class']."';";
+	$js_config.= " var _cp_result_box_height = '".$conf['max_res_lines']."';"; // number of lines to show in result box, must be 1 or more
+	$js_config.= " var _cp_result_box_width	= '';"; // width of the result box
+	$js_config.= " var _cp_busy_img_url	= '".$this->getSkinUrl('images/craftyclicks/clicktoaddress/'."crafty_postcode_busy.gif")."';";		// the url of the image to show while waiting for lookup results, e.g. a spinning wheel etc.
+
+	if (array_key_exists('clear_result',$conf) && $conf['clear_result']) {
+		$js_config.= " var _cp_clear_result = true;";
+	} else {
+		$js_config.= " var _cp_clear_result = false;";
+	}
+
+	$js_config.= " var _cp_hide_result = true;"; // once users make the selection, hide the result box - true/false
+	$js_config.= " var _cp_1st_res_line = '".$conf['first_res_line']."';";
+	$js_config.= " var _cp_err_msg1 = '".$conf['error_msg_1']."';";
+	$js_config.= " var _cp_err_msg2 = '".$conf['error_msg_2']."';";
+	$js_config.= " var _cp_err_msg3 = '".$conf['error_msg_3']."';";
+	$js_config.= " var _cp_err_msg4 = '".$conf['error_msg_4']."';";
+	$js_config.= " var _cp_token_fe = '".$conf['access_token']."';"; 
+
+	if (array_key_exists('hide_fields',$conf) && $conf['hide_fields']) {
+		$js_config.= " var _cp_hide_fields = true;";
+	} else {
+		$js_config.= " var _cp_hide_fields = false;";
+	}
+	
+	if (array_key_exists('hide_county',$conf) && $conf['hide_county']) {
+		$js_config.= " var _cp_hide_county = true;";
+	} else {
+		$js_config.= " var _cp_hide_county = false;";
+	}
+
+	if (array_key_exists('error_class',$conf) && '' != $conf['error_class']) {
+		$js_config.= " var _cp_error_class = '".$conf['error_class']."';";
+	} else {
+		$js_config.= " var _cp_error_class = '';";
+	}
+
+	if (array_key_exists('move_fields',$conf) && $conf['move_fields']) {
+		$js_config.= " var _cp_move_fields = true;";
+	} else {
+		$js_config.= " var _cp_move_fields = false;";
+	}
+	if (array_key_exists('button_fixposition',$conf) && 1 == $conf['button_fixposition']) {
+		$js_config.= " var _cp_button_fixposition = true;";
+	} else {
+		$js_config.= " var _cp_button_fixposition = false;";
+	}
+
+} else { //if (1 == $conf['active']) {
+	$js_config = " var _cp_integrate = false; ";
+}
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+<?php echo $js_config; ?>
+//]]>
+</script>
+	
+

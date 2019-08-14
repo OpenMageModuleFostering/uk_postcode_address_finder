@@ -1,24 +1,37 @@
-<?xml version="1.0"?>
-<!--
-/**
- * Crafty Clicks
- *
- * @category   CraftyClicks
- * @package    CraftyClicks_AddressFinder
- * @copyright  CraftyClicks.co.uk
- */
--->
-
-<config>
+<?xml version="1.0" encoding="UTF-8"?>
+<config>    
+	<tabs>
+		<craftyclicks translate="label" module="clicktoaddress">
+			<label><![CDATA[<img style="margin: 4px 4px 4px 0px;" src="https://craftyclicks.co.uk/assets/magento/crafty-logo.png" alt="Crafty Clicks" border="0" />]]></label>
+			<sort_order>101</sort_order>
+		</craftyclicks>
+	</tabs>
+	
 	<sections>
-		<general>
+		<clicktoaddress translate="label" module="clicktoaddress">
+			<label>UK Postcode Lookup</label>
+			<tab>craftyclicks</tab>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+ 
 			<groups>
-				<craftyclicks translate="label" module="craftyclicks">
-					<label>Crafty Clicks - Address Finder</label>
-					<sort_order>124</sort_order>
+				<general translate="label" module="clicktoaddress">
+					<comment>
+						<![CDATA[
+							For support, visit our <a href="http://www.magentocommerce.com/magento-connect/uk-postcode-lookup-address-finder.html">magento connect page</a>, or email to <a href="mailto:support@craftyclicks.co.uk">support@craftyclicks.co.uk</a>
+							<br/>
+							For current pricing and licensing, please visit <a href="https://craftyclicks.co.uk/">our website</a>!
+						]]>
+					</comment>
+					<label>UK Postcode Lookup Config</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1000</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
-					<show_in_store>0</show_in_store>
+					<show_in_store>1</show_in_store>
+ 
 					<fields>
 						<active translate="label">
 							<label>Enabled - Frontend</label>
@@ -194,20 +207,10 @@
 							<show_in_store>0</show_in_store>
 							<comment>This message is shown if any other error occurs.</comment>
 						</error_msg_4>
-
-						<help_label translate="label">
-							<label>Problems?</label>
-							<frontend_type>label</frontend_type>
-							<sort_order>50</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>0</show_in_store>
-							<comment>Look on the module magento connect page, or email support@craftyclicks.co.uk.</comment>
-						</help_label>
 					</fields>
-                    <comment><![CDATA[<a href="http://www.craftyclicks.co.uk" target="_blank">Signup for your free CraftyClicks evaluation account</a>]]></comment>
-				</craftyclicks>
+				</general>
 			</groups>
-		</general>
+		</clicktoaddress>
 	</sections>
+	
 </config>

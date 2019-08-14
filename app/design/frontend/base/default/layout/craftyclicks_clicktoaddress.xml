@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * Crafty Clicks Postcode Lookup 
+ *
+ * @category     Extension
+ * @copyright    Copyright (c) 2009-2013 Crafty Clicks (http://www.craftyclicks.com)
+ * @author       Crafty Clicks
+ */ 
+ -->
+
+<layout>
+
+<!-- standard magento pages -->
+
+	<checkout_onepage_index>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_magento.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</checkout_onepage_index>
+	
+	<checkout_multishipping_customer_address>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_magento.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</checkout_multishipping_customer_address>
+	
+	<checkout_multishipping_register>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_magento.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</checkout_multishipping_register>
+	
+	<customer_address_form>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_magento.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</customer_address_form>		
+	
+	<customer_account_create>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_magento.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</customer_account_create>		
+
+<!-- after-market single page checkout extensions -->
+
+	<onestepcheckout_index_index>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_onepagecheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</onestepcheckout_index_index>
+	
+	<gomage_checkout_onepage_index>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_gomage_lightcheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</gomage_checkout_onepage_index>
+
+	<checkout_onestep_index>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_onepagecheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</checkout_onestep_index>
+	
+	<ecommerceteam_echeckout_onepage_index>
+		<reference name="head">
+			<action method="removeItem"><type>js</type><name>craftyclicks/craftyclicks_magento.js</name></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_ecomm_easycheckout.js</script></action>
+		</reference>
+	</ecommerceteam_echeckout_onepage_index>
+
+	<wp_onepagecheckout_default>
+		<reference name="head">
+			<action method="removeItem"><type>js</type><name>craftyclicks/craftyclicks_magento.js</name></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_webandpeople_onepagecheckout.js</script></action>
+		</reference>
+	</wp_onepagecheckout_default>
+
+	<onepagecheckout_index_index>
+		<!-- Interior Web Design (IWD) Free Magento One Step / Page Checkout Module -->
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_iwd_onestepcheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</onepagecheckout_index_index>
+	<opc_index_index>
+		<!-- IWD Updated their solution, updated corresponding code -->
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_iwd_onestepcheckout_v2_2.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</opc_index_index>
+	
+	<oscheckout_index_index>
+		<!-- AHT One Step Checkout - http://www.mage-shop.com/one-step-checkout-extension.html -->
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_ath_oscheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</oscheckout_index_index>
+	
+	<aw_onestepcheckout_index_index>
+		<!-- Ahead Works One Step Checkout - http://www.magentocommerce.com/magento-connect/one-step-checkout-by-aheadworks-8829.html -->
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_aheadworks_onestepcheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</aw_onestepcheckout_index_index>
+	
+	<firecheckout_index_index>
+		<!-- Tempates Master FireCheckout - http://www.magentocommerce.com/magento-connect/fire-checkout-ultimate-one-page-checkout.html -->
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_tm_firecheckout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</firecheckout_index_index>
+	<aitcheckout_checkout_index>	  
+		<!-- AITOC one step checkout - http://www.aitoc.com/en/one_step_checkout_manager.html -->
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_aitoc_checkout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>
+	</aitcheckout_checkout_index>
+	
+	<anattadesign_awesomecheckout_onepage_index>
+		<reference name="head">
+			<action method="addJs"><script>craftyclicks/clicktoaddress/crafty_postcode.class.js</script></action>
+			<action method="addJs"><script>craftyclicks/clicktoaddress/craftyclicks_awesome_checkout.js</script></action>
+			<block type="page/html" name="craftyclicks_config" template="craftyclicks/clicktoaddress/common_config.phtml"/>
+		</reference>	  
+	</anattadesign_awesomecheckout_onepage_index>
+</layout>
