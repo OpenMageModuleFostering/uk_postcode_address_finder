@@ -36,7 +36,7 @@
 
 	<default>
 		<general>
-			<craftyclicks_addressfinder>
+			<craftyclicks>
 				<active>0</active>
 				<active_admin>0</active_admin>
 				<model>craftyclicks</model>
@@ -53,7 +53,7 @@
 				<error_msg_2>This postcode is not valid, please try again or enter your address manually</error_msg_2>
 				<error_msg_3>Unable to connect to address lookup server, please enter your address manually</error_msg_3>
 				<error_msg_4>An unexpected error occured, please enter your address manually</error_msg_4>
-			</craftyclicks_addressfinder>
+			</craftyclicks>
 		</general>
 	</default>
 </config>
