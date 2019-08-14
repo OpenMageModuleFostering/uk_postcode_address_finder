@@ -7,7 +7,7 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 	if (1 == $conf['craftyclicks']['active']) {
 	
 		if (false == $crafty_script_added) {
-			echo "<script type=\"text/javascript\" charset=\"ISO-8859-1\" src=\"".$obj->getJsUrl('crafty/crafty_postcode.js')."\"></script>\n";
+			echo "<script type=\"text/javascript\" charset=\"ISO-8859-1\" src=\"".$obj->getJsUrl('craftyclicks/crafty_postcode.class.js')."\"></script>\n";
 			$crafty_script_added = true;
 		}
 
@@ -28,6 +28,9 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 			}
 		}
 		$element_ids.=$town_id.','.$county_id.','.$postcode_id;
+		if (1 == $conf['craftyclicks']['house_search']) {
+			$element_ids.=',,crafty_in_search_string'.$suffix;
+		}
 
 		echo "
 		cp_obj".$suffix.".set('elements', '".$element_ids."');
@@ -60,15 +63,16 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 			// hide address fields if they are blank, only show them once an address is selected
 			echo "
 			function _cp_set_addr_fields_display".$suffix."(new_display) {
-				document.getElementById('".$town_id."').parentNode.parentNode.style.display = new_display;
-				if (document.getElementById('".$company_id."')) {
-					document.getElementById('".$company_id."').parentNode.style.display = new_display;
+				document.getElementById('hideOnNewAddress_".$town_id."').style.display = new_display;
+				if (document.getElementById('hideOnNewAddress_".$company_id."')) {
+					document.getElementById('hideOnNewAddress_".$company_id."').style.display = new_display;
 				}";
 			// do all street lines
 			for ($street_num = 1; $street_num<=$obj->helper('customer/address')->getStreetLines(); $street_num++) {
 				echo "
-				document.getElementById('".$street_id.$street_num."').parentNode.style.display = new_display;";
+				document.getElementById('hideOnNewAddress_".$street_id.$street_num."').style.display = new_display;";
 			}
+
 			echo "
 			}
 			// hide all address lines 
@@ -103,7 +107,7 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 		if (1 == $conf['craftyclicks']['hide_county']) {
 			echo "
 			function _cp_county_display".$suffix."(new_display) {
-				var county_filed = document.getElementById('".$county_id."').parentNode;
+				var county_filed = document.getElementById('countyDiv".$suffix."');
 				if (county_filed) {
 					county_filed.style.display = new_display;
 				} 
@@ -137,7 +141,12 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 				document.getElementById('".$postcode_id."').style.width = _cp_oldZipWidth".$suffix.";
 				document.getElementById('zipDiv').style.width = _cp_oldZipDivWidth".$suffix.";
 				document.getElementById('findAddrBtnDiv".$suffix."').style.display = 'none'; 
-				document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'none'; 
+				document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'none';";
+			if (1 == $conf['craftyclicks']['house_search']) {
+				echo "
+				document.getElementById('houseSearchDiv".$suffix."').style.display = 'none';";
+			}
+				echo "
 				_cp_addr_fields_show".$suffix."();
 				cp_obj".$suffix.".update_res(null);
 				_cp_county_display".$suffix."('inline');
@@ -145,15 +154,27 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 				document.getElementById('".$postcode_id."').style.width = '135px';
 				document.getElementById('zipDiv".$suffix."').style.width = '150px';
 				document.getElementById('findAddrBtnDiv".$suffix."').style.width = '125px';
-				document.getElementById('findAddrBtnDiv".$suffix."').style.display = 'inline'; 
+				document.getElementById('findAddrBtnDiv".$suffix."').style.display = 'inline';";
+			if (1 == $conf['craftyclicks']['house_search']) {
+				echo "
+				document.getElementById('houseSearchDiv".$suffix."').style.display = 'inline';";
+			}
+				echo " 
 				_cp_county_display".$suffix."('none');
 			}
 		}
 		function _cp_do_lookup".$suffix."()
 		{
 			document.getElementById('crafty_postcode_result_display".$suffix."').className = '';
-			document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'inline'; 
-			cp_obj".$suffix.".doLookup();
+			document.getElementById('crafty_postcode_result_display".$suffix."').style.display = 'inline';";
+		if (1 == $conf['craftyclicks']['house_search']) {
+			echo "
+			cp_obj".$suffix.".doHouseSearch();";
+		} else {
+			echo "
+			cp_obj".$suffix.".doLookup();";
+		}			
+		echo "
 		}
 			
 		var _cp_oldZipWidth".$suffix." = document.getElementById('". $postcode_id."').style.width; 
@@ -166,6 +187,19 @@ function crafty_add_address_finder($obj, $suffix = '', $company_id = 'company', 
 
 		_cp_country_handler".$suffix."();	
 	
+		// make the search button default on Enter key - optional!
+		function _cp_key_pressed_on_postcode".$suffix."(e) {
+			var cc = 0;
+			if (!e) e = window.event;
+			if(e.keyCode) {cc = e.keyCode;}
+			else if(e.which) {cc = e.which;}
+			if(cc == 13){
+				_cp_do_lookup".$suffix."()
+				return false;
+			}
+		}
+		var _cp_postcodeElem".$suffix." = document.getElementById('".$postcode_id."');
+        Event.observe(_cp_postcodeElem".$suffix.", 'keypress',  _cp_key_pressed_on_postcode".$suffix.");
 		</script>";
 	} 
 }

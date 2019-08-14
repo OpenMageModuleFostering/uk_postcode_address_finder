@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Crafty Clicks
+ * Crafty Clicks - Address Finder
  *
- * @category   DNC
- * @package    Dnc_Craftyclicks
- * @copyright  Tomasz Kapusta
+ * @category   CraftyClicks
+ * @package    CraftyClicks
+ * @copyright  CraftyClicks.co.uk
  */
 -->
 
 <config>
 	<modules>
-		<Dnc_Craftyclicks>
-			<version>1.6.1</version>
-		</Dnc_Craftyclicks>
+		<CraftyClicks>
+			<version>2.0</version>
+		</CraftyClicks>
 	</modules>
 	
 	<frontend>
           <layout>
               <updates>
-                  <dnc_craftyclicks>
+                  <craftyclicks>
                       <file>craftyclicks.xml</file>
-                  </dnc_craftyclicks>
+                  </craftyclicks>
               </updates>
           </layout>
     </frontend>
@@ -29,30 +29,31 @@
 	<global>		
 		<helpers>
 			<craftyclicks>
-				<class>Dnc_Craftyclicks_Helper</class>
+				<class>CraftyClicks_Helper</class>
 			</craftyclicks>
 		</helpers>		
 	</global>
 
 	<default>
 		<general>
-			<craftyclicks>
+			<craftyclicks_addressfinder>
 				<active>0</active>
 				<active_admin>0</active_admin>
-				<model>dnc/craftyclicks</model>
+				<model>craftyclicks</model>
 				<access_token>xxxxx-xxxxx-xxxxx-xxxxx</access_token>
 				<button_image></button_image>
 				<button_class>form-button-alt</button_class>
 				<hide_fields>0</hide_fields>
 				<hide_county>1</hide_county>
 				<clear_result>0</clear_result>
+				<house_search>0</house_search>
 				<error_class>error</error_class>
 				<first_res_line>----- please select your address ----</first_res_line>
 				<error_msg_1>This postcode could not be found, please try again or enter your address manually</error_msg_1>
 				<error_msg_2>This postcode is not valid, please try again or enter your address manually</error_msg_2>
 				<error_msg_3>Unable to connect to address lookup server, please enter your address manually</error_msg_3>
 				<error_msg_4>An unexpected error occured, please enter your address manually</error_msg_4>
-			</craftyclicks>
+			</craftyclicks_addressfinder>
 		</general>
 	</default>
 </config>

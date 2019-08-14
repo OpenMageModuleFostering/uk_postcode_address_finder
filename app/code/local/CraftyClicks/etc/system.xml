@@ -3,9 +3,9 @@
 /**
  * Crafty Clicks
  *
- * @category   DNC
- * @package    Dnc_Craftyclicks
- * @copyright  Tomasz Kapusta
+ * @category   CraftyClicks
+ * @package    CraftyClicks_AddressFinder
+ * @copyright  CraftyClicks.co.uk
  */
 -->
 
@@ -14,7 +14,7 @@
 		<general>
 			<groups>
 				<craftyclicks translate="label" module="craftyclicks">
-					<label>Crafty Clicks</label>
+					<label>Crafty Clicks - Address Finder</label>
 					<sort_order>124</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
@@ -56,7 +56,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
-							<comment>Here you can enter an image file name to use as the 'Find Address' button. Leave blank for a default Magento button. Images should be placed under /craftclicks in you skin folder.</comment>
+							<comment>Here you can enter an image file name to use as the 'Find Address' button. Leave blank for a default Magento button. Images should be placed under images/craftclicks in you skin folder.</comment>
 						</button_image>
 
 						<button_class translate="label">
@@ -101,6 +101,17 @@
 							<show_in_store>0</show_in_store>
 							<comment>Select to hide the result box once an address is selected.</comment>
 						</clear_result>
+
+						<house_search translate="label">
+							<label>Search by house name/number</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>27</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If 'yes' customers can provide a house name/number to speed up searching.</comment>
+						</house_search>
 
 						<error_class translate="label">
 							<label>Error Msg Class</label>

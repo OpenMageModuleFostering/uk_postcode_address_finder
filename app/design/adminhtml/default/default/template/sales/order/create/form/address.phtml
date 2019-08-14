@@ -1,4 +1,29 @@
-<?php if($this->getIsShipping()):
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+if($this->getIsShipping()):
     $_fieldsContainerId = 'order-shipping_address_fields';
     ?>
     <script type="text/javascript">
@@ -15,13 +40,14 @@ else:
     <?php
 endif; ?>
 <div class="entry-edit">
+
     <div class="entry-edit-head">
         <h4 class="icon-head fieldset-legend <?php echo $this->getHeaderCssClass() ?>"><?php echo $this->getHeaderText() ?></h4>
      </div>
 
     <fieldset class="np">
     <div class="order-choose-address">
-        <?php echo Mage::helper('sales')->__('Select from existing customer addresses:') ?><br />
+        <?php echo Mage::helper('sales')->__('Select from existing customer addresses:') ?><br/>
         <?php $_id = $this->getForm()->getHtmlIdPrefix() . 'customer_address_id' ?>
         <select id="<?php echo $_id ?>"  name="<?php echo $this->getForm()->getHtmlNamePrefix()?>[customer_address_id]" style="width:97.5%;" onchange="order.selectAddress(this, '<?php echo $_fieldsContainerId ?>')">
             <option value=""><?php echo Mage::helper('sales')->__('Add New Address') ?></option>
@@ -34,7 +60,7 @@ endif; ?>
             <?php endforeach; ?>
 
         </select>
-        <br />
+        <br/>
         <?php if($this->getIsShipping()): ?>
             <input type="checkbox" id="order-shipping_same_as_billing" name="shipping_same_as_billing" onchange="order.setShippingAsBilling(this.checked)" <?php if($this->getIsAsBilling()): ?>checked<?php endif; ?>/>
             <label for="order-shipping_same_as_billing" class="no-float"><?php echo Mage::helper('sales')->__('Same As Billing Address') ?></label>
@@ -62,12 +88,30 @@ endif; ?>
     </script>
     </fieldset>
 </div>
+<script type="text/javascript">
+//<![CDATA[
+function _set_default_country() {
+<?php 
+echo '	
+	var default_country="'.Mage::getStoreConfig('general/country/default').'";
+	';
+?>
+	if ('' == $('order-billing_address_country_id').value) {
+		$('order-billing_address_country_id').value = default_country;
+	}
+	if ('' == $('order-shipping_address_country_id').value) {
+		$('order-shipping_address_country_id').value = default_country;
+	}
+}
+setTimeout(_set_default_country,1000);
+//]]>
+</script>
 <?php // CraftyClicks - Start
 $conf = Mage::getStoreConfig('general');		
 if ($conf['craftyclicks']['active_admin'] && $this->getIsShipping()) : 
 	$cp_access_token = $conf['craftyclicks']['access_token'];	
 ?>
-<script type="text/javascript" charset="ISO-8859-1" src="<?php echo $this->getJsUrl('crafty/crafty_postcode.js'); ?>"></script>
+<script type="text/javascript" charset="ISO-8859-1" src="<?php echo $this->getJsUrl('craftyclicks/crafty_postcode.class.js'); ?>"></script>
 <script type="text/javascript">
 //<![CDATA[
 var cp_obj = new Array();

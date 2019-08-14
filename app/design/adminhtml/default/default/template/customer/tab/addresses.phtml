@@ -18,10 +18,10 @@
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magentocommerce.com for more information.
  *
- * @category   design_default
- * @package    Mage
- * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
- * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
 <!-- Addresses list -->
@@ -123,7 +123,7 @@
 <?php // CraftyClicks - Start
 $conf = Mage::getStoreConfig('general');		
 if ($conf['craftyclicks']['active_admin']) : ?>
-	<script type="text/javascript" charset="ISO-8859-1" src="<?php echo $this->getJsUrl('crafty/crafty_postcode.js'); ?>"></script>
+	<script type="text/javascript" charset="ISO-8859-1" src="<?php echo $this->getJsUrl('craftyclicks/crafty_postcode.class.js'); ?>"></script>
 	<script type="text/javascript">
 	//<![CDATA[
 		var cp_obj = new Array();
@@ -194,6 +194,10 @@ addressesModel.prototype = {
             Element.hide($('form_'+item.id));
             $('form_'+item.id).statusBar = item;
             $('form_'+item.id).addressItem = item;
+
+            // set Zip optional/required
+            var countryElement = $('id' + item.id.replace(/address_item_/, '') + 'country_id');
+            varienGlobalEvents.fireEvent("address_country_changed", countryElement);
         }
     },
 
@@ -290,7 +294,7 @@ addressesModel.prototype = {
         }
     },
 
-    setAddressAsDefault : function(){
+     setAddressAsDefault : function(){
         for(var i=0; i<this.itemList.length;i++){
             if(this.itemList[i].id){
                 var inputs = $(this.itemList[i].id).getElementsBySelector('input');
@@ -335,6 +339,22 @@ addressesModel.prototype = {
 
         this.activeItem = item;
 <?php // CraftyClicks - Start
+echo '   
+        var default_country="'.Mage::getStoreConfig('general/country/default').'";
+    ';
+?>
+        if (item) {
+            var item_html_id = '';
+            if ('address_item_' == item.id.substr(0,13)) {
+                item_html_id = 'id'+item.id.substr(13);
+            } else if ('new_item' == item.id.substr(0,8)) {
+                item_html_id = '_item'+item.id.substr(8);
+            }
+            if ('' == $(item_html_id+'country_id').value) {
+                $(item_html_id+'country_id').value = default_country;
+            }
+        }
+<?php
 if ($conf['craftyclicks']['active_admin']) : ?>
 		this.add_crafty_clicks(item);
 <?php endif // CraftyClicks - End ?>
@@ -385,7 +405,6 @@ if ($conf['craftyclicks']['active_admin']) : ?>
 			fndBtn.alt = item_html_id;
 			fndBtn.id = item_html_id+'findAddrBtn';
 			fndBtn.value = '<?php echo $this->__('Find Address') ?>';
-			fndBtn.class = '<?php echo $conf['craftyclicks']['button_class']; ?>';
 
 			$(item_html_id+'postcode').style.width = '100px';
 			$(item_html_id+'postcode').parentNode.appendChild(fndBtn);
@@ -407,7 +426,7 @@ if ($conf['craftyclicks']['active_admin']) : ?>
 			$(item_html_id+'findAddrBtn').style.display = 'none'; 
 		else
 			$(item_html_id+'findAddrBtn').style.display = 'inline';
-	},
+    },
 <?php endif // CraftyClicks - End ?>
 
     getFormContainerFields : function(container){
@@ -470,7 +489,7 @@ if ($conf['craftyclicks']['active_admin']) : ?>
 
     deleteAddress : function(item){
         if(confirm('<?php echo Mage::helper('customer')->__('Are you sure you want to delete this address?') ?>')){
-            if( item.isNewAddress){
+            if( item.isNewAddress || 1 == this.itemList.length){
                 if ( this.activeItem == item ) this.formContainer.removeChild(item.formBlock);
             } else {
                 if($('deleted_'+item.id)){
@@ -509,7 +528,13 @@ if ($conf['craftyclicks']['active_admin']) : ?>
 
     bindCountryRegionRelation : function(parentId){
         //alert('OK');
-        var countryElements = $$('.countries');
+        if(parentId){
+            var countryElements = $(parentId).getElementsByClassName('countries');
+        }
+        else{
+            var countryElements = $$('.countries');
+        }
+
         for(var i=0;i<=countryElements.length;i++){
             if(countryElements[i]){
                 if(!countryElements[i].bindRegions || !countryElements[i].parentBindId || countryElements[i].parentBindId!=parentId){
@@ -532,6 +557,8 @@ if ($conf['craftyclicks']['active_admin']) : ?>
                 var url = this.regionsUrl+'parent/'+countryElement.value;
                 this.loader.load(url, {}, this.refreshRegionField.bind(this));
             }
+            // set Zip optional/required
+            varienGlobalEvents.fireEvent("address_country_changed", countryElement);
         }
     },
 
