@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/UK_Postcode_Address_Finder",
+    "name": "OpenMageModuleFostering\/UK_Postcode_Address_Finder",
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
     "description": "UK address auto completion functionality. Uses the Crafty Clicks web service to lookup address from a postcode.",
     "authors": [
-    {
-        "name": "Crafty Clicks",
-        "email": "support@craftyclicks.co.uk"
-    }
-],
+        {
+            "name": "Crafty Clicks",
+            "email": "support@craftyclicks.co.uk"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
